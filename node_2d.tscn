@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bpdov8xdd3l1f"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="HolaMundo" type="Node2D" parent="."]
