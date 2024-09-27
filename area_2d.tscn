@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_1xujf"]
 radius = 37.1214
 
-[node name="Area2D" type="Area2D"]
+[node name="KeyObject" type="Area2D"]
 script = ExtResource("1_rp28q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +17,6 @@ shape = SubResource("CircleShape2D_1xujf")
 position = Vector2(135, 115)
 scale = Vector2(0.345703, 0.357422)
 texture = ExtResource("2_8cem4")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
