@@ -202,9 +202,6 @@ tracks/0/keys = {
 "values": [6]
 }
 
-[sub_resource type="Animation" id="Animation_vo0e1"]
-resource_name = "new_animation"
-
 [sub_resource type="Animation" id="Animation_gecig"]
 resource_name = "SoltarRojo"
 length = 0.16667
@@ -220,6 +217,9 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+
+[sub_resource type="Animation" id="Animation_vo0e1"]
+resource_name = "new_animation"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ttg5p"]
 _data = {
