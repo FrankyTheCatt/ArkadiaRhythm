@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cslbknm5nm8gw"]
+
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_gudhc"]
+[ext_resource type="PackedScene" uid="uid://cgsg7grhbovfi" path="res://sprites/Circle.tscn" id="2_l5qx0"]
+[ext_resource type="PackedScene" uid="uid://b7wd1cflll84l" path="res://sprites/AtrapaCircle.tscn" id="3_47rv0"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_gudhc")
+KeyObject = ExtResource("2_l5qx0")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="ColorObject" parent="Objects" instance=ExtResource("3_47rv0")]
+position = Vector2(412, 556)
+
+[node name="ColorObject2" parent="Objects" instance=ExtResource("3_47rv0")]
+position = Vector2(530, 558)
+
+[node name="ColorObject3" parent="Objects" instance=ExtResource("3_47rv0")]
+position = Vector2(643, 557)
+
+[node name="ColorObject4" parent="Objects" instance=ExtResource("3_47rv0")]
+position = Vector2(756, 556)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(586, 53)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
