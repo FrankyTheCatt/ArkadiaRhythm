@@ -1,16 +1,23 @@
 extends Area2D
 
-const gravedad = 120
+const gravedad = 500
 var esta_dentro = false
 var selected_Key = 0
 
 # Hace que la nota caiga
 func _process(delta):
 	position.y += gravedad * delta
+
+	# Si la nota está dentro del área de interacción
 	if esta_dentro:
+		print("debug => Tecla asignada:", selected_Key)
 		if Input.is_key_pressed(selected_Key):
-			print("debug=> Qué bien!")
-			queue_free()
+			print("debug => ¡Qué bieeeeeeen!")
+			queue_free()  # Elimina la nota si la tecla correcta fue presionada
+
+	if position.y > 1000:  
+		print("debug => Nota no apretada, eliminada")
+		queue_free()  # Elimina la nota si no fue presionada y salió de la pantalla no funciona 
 
 # Asignar un color y tecla fija por carril
 func spawn(key:int, pos:Vector2)->void:

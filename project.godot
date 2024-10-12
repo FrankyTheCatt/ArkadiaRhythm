@@ -13,3 +13,9 @@ config_version=5
 config/name="ArkadiaRythm"
 run/main_scene="res://BASE JUEGO/sprites/KeyObject.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/fullsize=false
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
