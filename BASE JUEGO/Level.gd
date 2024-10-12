@@ -5,10 +5,10 @@ var positions: Array = []
 var timers: Array = []  # Array para los temporizadores
 
 func _ready():
-	positions.append($Objects/ColorObject.global_position.x)
-	positions.append($Objects/ColorObject2.global_position.x)
-	positions.append($Objects/ColorObject3.global_position.x)
-	positions.append($Objects/ColorObject4.global_position.x)
+	positions.append($Objects/ColorObject4.global_position.x) # Carril 1 (tecla A)
+	positions.append($Objects/ColorObject3.global_position.x)# Carril 2 (tecla S)
+	positions.append($Objects/ColorObject2.global_position.x)# Carril 3 (tecla D)
+	positions.append($Objects/ColorObject.global_position.x)# Carril 4 (tecla F)
 
 	# Crear y configurar un temporizador para cada carril
 	for i in range(4):

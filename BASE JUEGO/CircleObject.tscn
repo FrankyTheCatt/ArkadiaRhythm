@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://kjojpf53ut4x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8owt"]
-radius = 80.0062
+radius = 80.1561
 
 [node name="CircleObject" type="Area2D"]
 

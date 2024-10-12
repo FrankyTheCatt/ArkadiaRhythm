@@ -11,16 +11,16 @@ KeyObject = ExtResource("2_fkxup")
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="ColorObject" parent="Objects" instance=ExtResource("1_jqbmq")]
-position = Vector2(620, 814)
+position = Vector2(1383, 729)
 
 [node name="ColorObject2" parent="Objects" instance=ExtResource("1_jqbmq")]
-position = Vector2(1284, 814)
+position = Vector2(1065, 734)
 
 [node name="ColorObject3" parent="Objects" instance=ExtResource("1_jqbmq")]
-position = Vector2(1058, 814)
+position = Vector2(774, 732)
 
 [node name="ColorObject4" parent="Objects" instance=ExtResource("1_jqbmq")]
-position = Vector2(839, 814)
+position = Vector2(494, 734)
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(961, 62)
+position = Vector2(937, 67)
