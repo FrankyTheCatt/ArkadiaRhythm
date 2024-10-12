@@ -11,5 +11,5 @@ config_version=5
 [application]
 
 config/name="ArkadiaRythm"
-run/main_scene="res://BASE JUEGO/sprites/Circle.tscn"
+run/main_scene="res://BASE JUEGO/sprites/KeyObject.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
