@@ -30,9 +30,9 @@ func spawn(key:int, pos:Vector2)->void:
 			self.modulate = Color(0, 1, 0)  # Verde
 
 # Detecta si una nota entra en el área
-func _on_area_entered(area: Area2D) -> void:
+func _on_area_entered(_area: Area2D) -> void:
 	esta_dentro = true
 
 # Detecta si una nota sale del área
-func _on_area_exited(area: Area2D) -> void:
+func _on_area_exited(_area: Area2D) -> void:
 	esta_dentro = false
