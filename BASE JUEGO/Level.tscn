@@ -13,14 +13,22 @@ KeyObject = ExtResource("2_fkxup")
 [node name="ColorObject" parent="Objects" instance=ExtResource("1_jqbmq")]
 position = Vector2(1383, 729)
 
+[node name="Sprite2D" type="Sprite2D" parent="Objects/ColorObject"]
+
 [node name="ColorObject2" parent="Objects" instance=ExtResource("1_jqbmq")]
 position = Vector2(1065, 734)
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/ColorObject2"]
 
 [node name="ColorObject3" parent="Objects" instance=ExtResource("1_jqbmq")]
 position = Vector2(774, 732)
 
+[node name="Sprite2D" type="Sprite2D" parent="Objects/ColorObject3"]
+
 [node name="ColorObject4" parent="Objects" instance=ExtResource("1_jqbmq")]
 position = Vector2(494, 734)
+
+[node name="Sprite2D" type="Sprite2D" parent="Objects/ColorObject4"]
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(937, 67)
