@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cslbknm5nm8gw"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_gudhc"]
-[ext_resource type="PackedScene" uid="uid://cgsg7grhbovfi" path="res://sprites/Circle.tscn" id="2_l5qx0"]
-[ext_resource type="PackedScene" uid="uid://b7wd1cflll84l" path="res://sprites/AtrapaCircle.tscn" id="3_47rv0"]
+[ext_resource type="PackedScene" uid="uid://cgsg7grhbovfi" path="res://BASE JUEGO/sprites/Circle.tscn" id="2_l5qx0"]
+[ext_resource type="PackedScene" uid="uid://b7wd1cflll84l" path="res://BASE JUEGO/sprites/AtrapaCircle.tscn" id="3_47rv0"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_gudhc")
