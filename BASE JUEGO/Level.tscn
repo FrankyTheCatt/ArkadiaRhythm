@@ -1,13 +1,17 @@
-[gd_scene load_steps=26 format=3 uid="uid://ciwmo8oon64p2"]
+[gd_scene load_steps=28 format=3 uid="uid://ciwmo8oon64p2"]
 
-[ext_resource type="PackedScene" uid="uid://kjojpf53ut4x" path="res://BASE JUEGO/CircleObject.tscn" id="1_jqbmq"]
-[ext_resource type="Script" path="res://BASE JUEGO/Level.gd" id="1_xw07e"]
-[ext_resource type="PackedScene" uid="uid://b8dl02mxq46ir" path="res://BASE JUEGO/KeyObject.tscn" id="2_fkxup"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
+[ext_resource type="PackedScene" uid="uid://clrfowbcr1nc3" path="res://CircleObject.tscn" id="2_3eycq"]
+[ext_resource type="PackedScene" uid="uid://bnap3x7l760my" path="res://KeyObject.tscn" id="2_xeu0g"]
 [ext_resource type="Texture2D" uid="uid://ipvngivo4ipp" path="res://BASE JUEGO/assets/Daco_1717412.png" id="4_b301r"]
-[ext_resource type="Script" path="res://BASE JUEGO/scripts/amarillo.gd" id="5_1owgi"]
-[ext_resource type="Script" path="res://BASE JUEGO/scripts/rojo.gd" id="5_8ykil"]
-[ext_resource type="Script" path="res://BASE JUEGO/scripts/verde.gd" id="5_ibv20"]
-[ext_resource type="Script" path="res://BASE JUEGO/scripts/azul.gd" id="5_mt2wn"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Verde.cs" id="4_y5beh"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_rg5wb"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Amarillo.cs" id="6_sujv6"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Rojo.cs" id="7_1v7vv"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/SerialReader.cs" id="9_f2yjl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8owt"]
+radius = 80.1561
 
 [sub_resource type="Animation" id="Animation_q8bcc"]
 resource_name = "ApretarVerde"
@@ -230,13 +234,25 @@ _data = {
 }
 
 [node name="Level" type="Node2D"]
-script = ExtResource("1_xw07e")
-KeyObject = ExtResource("2_fkxup")
+script = ExtResource("1_s1inn")
+
+[node name="CircleObject" parent="." instance=ExtResource("2_3eycq")]
+
+[node name="KeyObject" parent="." instance=ExtResource("2_xeu0g")]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(937, 67)
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="ColorObject" parent="Objects" instance=ExtResource("1_jqbmq")]
+[node name="SerialReader" type="Node" parent="Objects"]
+script = ExtResource("9_f2yjl")
+
+[node name="ColorObject" type="Area2D" parent="Objects"]
 position = Vector2(1383, 729)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject"]
+shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Verde" type="Sprite2D" parent="Objects/ColorObject"]
 visibility_layer = 2
@@ -244,7 +260,7 @@ texture = ExtResource("4_b301r")
 hframes = 5
 vframes = 9
 frame = 5
-script = ExtResource("5_ibv20")
+script = ExtResource("4_y5beh")
 
 [node name="animVerde" type="AnimationPlayer" parent="Objects/ColorObject/Verde"]
 libraries = {
@@ -252,8 +268,11 @@ libraries = {
 }
 autoplay = "SoltarVerde"
 
-[node name="ColorObject2" parent="Objects" instance=ExtResource("1_jqbmq")]
+[node name="ColorObject2" type="Area2D" parent="Objects"]
 position = Vector2(1065, 734)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject2"]
+shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Azul" type="Sprite2D" parent="Objects/ColorObject2"]
 visibility_layer = 2
@@ -261,7 +280,7 @@ texture = ExtResource("4_b301r")
 hframes = 5
 vframes = 9
 frame = 8
-script = ExtResource("5_mt2wn")
+script = ExtResource("5_rg5wb")
 
 [node name="animAzul" type="AnimationPlayer" parent="Objects/ColorObject2/Azul"]
 libraries = {
@@ -269,8 +288,11 @@ libraries = {
 }
 autoplay = "SoltarAzul"
 
-[node name="ColorObject3" parent="Objects" instance=ExtResource("1_jqbmq")]
+[node name="ColorObject3" type="Area2D" parent="Objects"]
 position = Vector2(774, 732)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject3"]
+shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Amarillo" type="Sprite2D" parent="Objects/ColorObject3"]
 visibility_layer = 2
@@ -278,7 +300,7 @@ texture = ExtResource("4_b301r")
 hframes = 5
 vframes = 9
 frame = 7
-script = ExtResource("5_1owgi")
+script = ExtResource("6_sujv6")
 
 [node name="animAmarillo" type="AnimationPlayer" parent="Objects/ColorObject3/Amarillo"]
 libraries = {
@@ -286,8 +308,11 @@ libraries = {
 }
 autoplay = "SoltarAmarillo"
 
-[node name="ColorObject4" parent="Objects" instance=ExtResource("1_jqbmq")]
+[node name="ColorObject4" type="Area2D" parent="Objects"]
 position = Vector2(494, 734)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject4"]
+shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Rojo" type="Sprite2D" parent="Objects/ColorObject4"]
 visibility_layer = 2
@@ -295,13 +320,10 @@ texture = ExtResource("4_b301r")
 hframes = 5
 vframes = 9
 frame = 6
-script = ExtResource("5_8ykil")
+script = ExtResource("7_1v7vv")
 
 [node name="animRojo" type="AnimationPlayer" parent="Objects/ColorObject4/Rojo"]
 libraries = {
 "": SubResource("AnimationLibrary_ttg5p")
 }
 autoplay = "SoltarRojo"
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(937, 67)
