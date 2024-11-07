@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://0mq4pw2um2k7"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a3kjs"]
+load_path = "res://.godot/imported/tile000.png-eaf951de037913f2deeca2776c6daff2.ctex"
+
+[resource]
+texture = SubResource("CompressedTexture2D_a3kjs")
+expand_margin_left = 9.0
+expand_margin_top = 2.0
+expand_margin_right = 8.0
+expand_margin_bottom = 2.0
