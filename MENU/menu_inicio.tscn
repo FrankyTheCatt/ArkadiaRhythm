@@ -1,10 +1,48 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwhdkt5ulviq6"]
+[gd_scene load_steps=11 format=3 uid="uid://cwhdkt5ulviq6"]
 
 [ext_resource type="Script" path="res://MENU/menu_inicio.gd" id="1_77pig"]
+[ext_resource type="Texture2D" uid="uid://clxme0daqwpex" path="res://MENU/Ultimate Pixel 3.2/crt screens/button crt/button 1 crt sprite.png" id="3_brhqo"]
+[ext_resource type="VideoStream" path="res://MENU/Assets/menu.ogv" id="4_fd17u"]
 [ext_resource type="Theme" uid="uid://72lv53c4il6o" path="res://MENU/Botones.tres" id="7_hqh6p"]
 
 [sub_resource type="Theme" id="Theme_cft6w"]
 resource_local_to_scene = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf7mb"]
+atlas = ExtResource("3_brhqo")
+region = Rect2(0, 0, 85, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwjeo"]
+atlas = ExtResource("3_brhqo")
+region = Rect2(85, 0, 85, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo6iq"]
+atlas = ExtResource("3_brhqo")
+region = Rect2(170, 0, 85, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvfqd"]
+atlas = ExtResource("3_brhqo")
+region = Rect2(255, 0, 85, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r108f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf7mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwjeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo6iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvfqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Menu Inicio" type="Control"]
 layout_mode = 3
@@ -17,38 +55,121 @@ grow_vertical = 2
 theme = SubResource("Theme_cft6w")
 script = ExtResource("1_77pig")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = -1
+offset_top = -222.0
+offset_right = 1920.0
+offset_bottom = 866.0
+stream = ExtResource("4_fd17u")
+autoplay = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1092.0
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+
+[node name="ColorRect2" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1092.0
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+
+[node name="ColorRect3" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1092.0
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+
+[node name="ColorRect4" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1092.0
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+
+[node name="ColorRect5" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1092.0
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+
+[node name="ColorRect6" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1918.0
+offset_bottom = 1092.0
+color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+
+[node name="Botones" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 617)
 layout_mode = 0
-offset_left = 713.0
+offset_left = 1197.0
 offset_top = -8.0
-offset_right = 1251.0
+offset_right = 1735.0
 offset_bottom = 609.0
 pivot_offset = Vector2(-1, 35)
 theme = ExtResource("7_hqh6p")
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Button" type="Button" parent="VBoxContainer2"]
+[node name="Button" type="Button" parent="Botones"]
 clip_contents = true
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("7_hqh6p")
-text = "Jugar"
+text = "JUGAR"
 clip_text = true
 
-[node name="options" type="Button" parent="VBoxContainer2"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/Button"]
+process_mode = 3
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(270, 77)
+scale = Vector2(6.329, 10.875)
+sprite_frames = SubResource("SpriteFrames_r108f")
+autoplay = "default"
+frame_progress = 0.0225905
+
+[node name="options" type="Button" parent="Botones"]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("7_hqh6p")
 text = "OPCIONES"
 
-[node name="quit" type="Button" parent="VBoxContainer2"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/options"]
+process_mode = 3
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(270, 68)
+scale = Vector2(6.329, 10.875)
+sprite_frames = SubResource("SpriteFrames_r108f")
+autoplay = "default"
+frame_progress = 0.328663
+
+[node name="quit" type="Button" parent="Botones"]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("7_hqh6p")
 text = "SALIR"
 
-[connection signal="pressed" from="VBoxContainer2/Button" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer2/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer2/quit" to="." method="_on_quit_pressed"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/quit"]
+process_mode = 3
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(272, 75)
+scale = Vector2(6.329, 10.875)
+sprite_frames = SubResource("SpriteFrames_r108f")
+autoplay = "default"
+frame_progress = 0.00459842
+
+[connection signal="pressed" from="Botones/Button" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Botones/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Botones/quit" to="." method="_on_quit_pressed"]
