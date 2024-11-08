@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2xyod7jm1e84"]
+
+[ext_resource type="Texture2D" uid="uid://d2gr5pnrib6hu" path="res://CHARACTER DATA/Sprites/32x32 circle bar over.png" id="1_7vhnf"]
+[ext_resource type="Texture2D" uid="uid://djh42dwtjx67u" path="res://CHARACTER DATA/Sprites/32x32 circle bar progress blue.png" id="2_rjyjt"]
+[ext_resource type="Script" path="res://CHARACTER DATA/ProgressHealth.cs" id="3_g50rp"]
+
+[node name="BarraVidaJugador" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.018
+anchor_top = 0.972
+anchor_right = 0.018
+anchor_bottom = 0.972
+offset_left = 0.439999
+offset_top = -64.76
+offset_right = 41.44
+offset_bottom = 0.23999
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "VIDA"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="ProgressBar" type="TextureProgressBar" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+max_value = 40.0
+value = 40.0
+fill_mode = 4
+texture_under = ExtResource("1_7vhnf")
+texture_progress = ExtResource("2_rjyjt")
+script = ExtResource("3_g50rp")

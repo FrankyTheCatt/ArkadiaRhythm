@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://pca1xoomqkov"]
 
-[ext_resource type="Script" path="res://MENU/opciones.gd" id="1_ka7uq"]
+[ext_resource type="Script" path="res://MENU/Scrips/Options_Menu.cs" id="1_3qwxn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d06f3"]
 bg_color = Color(0.364706, 0.666667, 0.0784314, 0.941176)
@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ka7uq")
+script = ExtResource("1_3qwxn")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -78,5 +78,6 @@ text = "ATRÁS"
 
 [connection signal="pressed" from="VBoxContainer/Volume" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/Resolution" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_quit_pressed"]
+[connection signal="button_up" from="VBoxContainer/Back" to="." method="_on_back_button_up"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_quit_pressed"]
