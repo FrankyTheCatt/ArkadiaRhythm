@@ -1,24 +1,45 @@
-[gd_scene load_steps=8 format=3 uid="uid://pca1xoomqkov"]
+[gd_scene load_steps=10 format=3 uid="uid://pca1xoomqkov"]
 
 [ext_resource type="Script" path="res://MENU/opciones.gd" id="1_ka7uq"]
+[ext_resource type="VideoStream" path="res://MENU/Assets/menu.ogv" id="2_grjje"]
+[ext_resource type="Theme" uid="uid://72lv53c4il6o" path="res://MENU/Botones.tres" id="3_t0dnt"]
+[ext_resource type="Texture2D" uid="uid://clxme0daqwpex" path="res://MENU/Ultimate Pixel 3.2/crt screens/button crt/button 1 crt sprite.png" id="4_47sp7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d06f3"]
-bg_color = Color(0.364706, 0.666667, 0.0784314, 0.941176)
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf7mb"]
+atlas = ExtResource("4_47sp7")
+region = Rect2(0, 0, 85, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0o4v"]
-bg_color = Color(0.366391, 0.668485, 0.0786841, 0.784314)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwjeo"]
+atlas = ExtResource("4_47sp7")
+region = Rect2(85, 0, 85, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t6mgw"]
-bg_color = Color(0.945098, 0.717647, 0.203922, 0.941176)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo6iq"]
+atlas = ExtResource("4_47sp7")
+region = Rect2(170, 0, 85, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlrxe"]
-bg_color = Color(0.945098, 0.717647, 0.203922, 0.784314)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvfqd"]
+atlas = ExtResource("4_47sp7")
+region = Rect2(255, 0, 85, 16)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rle7u"]
-bg_color = Color(0.776471, 0, 0.235294, 0.941176)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h4dba"]
-bg_color = Color(0.776471, 0, 0.235294, 0.784314)
+[sub_resource type="SpriteFrames" id="SpriteFrames_5wgnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf7mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwjeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo6iq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvfqd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -29,54 +50,86 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ka7uq")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.790042, 0.942789, 0.995201, 1)
+anchors_preset = -1
+offset_top = -12.0
+offset_right = 1920.0
+offset_bottom = 1076.0
+stream = ExtResource("2_grjje")
+autoplay = true
+loop = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -213.0
-offset_top = -95.0
-offset_right = 213.0
-offset_bottom = 95.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 20
+[node name="ColorRect2" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 1918.0
+offset_bottom = 1104.0
+color = Color(0, 0, 0, 0.607843)
 
-[node name="Volume" type="Button" parent="VBoxContainer"]
+[node name="Botones" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 617)
+offset_left = 1262.0
+offset_top = 207.0
+offset_right = 1800.0
+offset_bottom = 824.0
+pivot_offset = Vector2(-1, 35)
+theme = ExtResource("3_t0dnt")
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Button" type="Button" parent="Botones"]
+clip_contents = true
+custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_d06f3")
-theme_override_styles/normal = SubResource("StyleBoxFlat_f0o4v")
-text = "VOLUMEN"
+focus_mode = 0
+theme = ExtResource("3_t0dnt")
+text = "Volume"
+clip_text = true
 
-[node name="Resolution" type="Button" parent="VBoxContainer"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/Button"]
+process_mode = 3
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(270, 77)
+scale = Vector2(6.329, 10.875)
+sprite_frames = SubResource("SpriteFrames_5wgnj")
+autoplay = "default"
+
+[node name="options" type="Button" parent="Botones"]
+custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_t6mgw")
-theme_override_styles/normal = SubResource("StyleBoxFlat_dlrxe")
-text = "RESOLUCION"
+focus_mode = 0
+theme = ExtResource("3_t0dnt")
+text = "Resolucion"
 
-[node name="Back" type="Button" parent="VBoxContainer"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/options"]
+process_mode = 3
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(270, 68)
+scale = Vector2(6.329, 10.875)
+sprite_frames = SubResource("SpriteFrames_5wgnj")
+autoplay = "default"
+
+[node name="quit" type="Button" parent="Botones"]
+custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/hover = SubResource("StyleBoxFlat_rle7u")
-theme_override_styles/normal = SubResource("StyleBoxFlat_h4dba")
-text = "ATRÁS"
+focus_mode = 0
+theme = ExtResource("3_t0dnt")
+text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/Volume" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/Resolution" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_quit_pressed"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/quit"]
+process_mode = 3
+modulate = Color(0.497474, 0.497474, 0.497474, 1)
+show_behind_parent = true
+z_as_relative = false
+position = Vector2(272, 75)
+scale = Vector2(6.329, 10.875)
+sprite_frames = SubResource("SpriteFrames_5wgnj")
+autoplay = "default"
+
+[connection signal="pressed" from="Botones/quit" to="." method="_on_back_pressed"]

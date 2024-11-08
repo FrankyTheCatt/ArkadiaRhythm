@@ -66,41 +66,12 @@ stream = ExtResource("4_fd17u")
 autoplay = true
 loop = true
 
-[node name="ColorRect" type="ColorRect" parent="VideoStreamPlayer"]
-layout_mode = 0
-offset_right = 1918.0
-offset_bottom = 1092.0
-color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
-
 [node name="ColorRect2" type="ColorRect" parent="VideoStreamPlayer"]
 layout_mode = 0
+offset_top = -10.0
 offset_right = 1918.0
-offset_bottom = 1092.0
-color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
-
-[node name="ColorRect3" type="ColorRect" parent="VideoStreamPlayer"]
-layout_mode = 0
-offset_right = 1918.0
-offset_bottom = 1092.0
-color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
-
-[node name="ColorRect4" type="ColorRect" parent="VideoStreamPlayer"]
-layout_mode = 0
-offset_right = 1918.0
-offset_bottom = 1092.0
-color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
-
-[node name="ColorRect5" type="ColorRect" parent="VideoStreamPlayer"]
-layout_mode = 0
-offset_right = 1918.0
-offset_bottom = 1092.0
-color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
-
-[node name="ColorRect6" type="ColorRect" parent="VideoStreamPlayer"]
-layout_mode = 0
-offset_right = 1918.0
-offset_bottom = 1092.0
-color = Color(0.0214346, 0.0214346, 0.0214346, 0.176471)
+offset_bottom = 1082.0
+color = Color(0, 0, 0, 0.607843)
 
 [node name="Botones" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 617)
