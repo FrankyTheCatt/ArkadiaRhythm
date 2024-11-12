@@ -11,10 +11,6 @@ public partial class Level : Node2D
 	private PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
 	private SerialReader serialReader;
 	
-	public void _Process(){
-		Timer time = new Timer();
-		GD.Print(time);
-	}
 	public override void _Ready()
 	{
 		GD.Print("Estructura del árbol de nodos: ");
