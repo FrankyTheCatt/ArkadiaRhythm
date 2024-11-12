@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6kt3yktw7tke"]
-
-[ext_resource type="Script" path="res://NIVELES(anais)/mapeado.gd" id="1_sxodi"]
-
-[node name="Node" type="Node"]
-script = ExtResource("1_sxodi")
