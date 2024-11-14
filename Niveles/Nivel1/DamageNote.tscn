@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://f33d6ohpc42k"]
+
+[ext_resource type="Script" path="res://Niveles/Nivel1/DamageNote.cs" id="1_yv2mx"]
+[ext_resource type="Texture2D" uid="uid://ch5yl3jh6oiig" path="res://Niveles/Nivel1/rayo.png" id="2_gfiy1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5ub1"]
+size = Vector2(78, 20)
+
+[node name="DamageNote" type="Area2D"]
+script = ExtResource("1_yv2mx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y5ub1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 10.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gfiy1")
