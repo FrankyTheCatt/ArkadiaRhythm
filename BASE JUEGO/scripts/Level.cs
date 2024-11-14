@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 public partial class Level : Node2D
 {
-	private List<float> positions = new List<float>(); // posiciones X de cada carril
-	private List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
-	private PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
-	private SerialReader serialReader;
+	protected List<float> positions = new List<float>(); // posiciones X de cada carril
+	protected List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
+	protected PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
+	protected SerialReader serialReader;
 
 	public override void _Ready()
 	{
@@ -51,7 +51,7 @@ public partial class Level : Node2D
 	}
 
 	// método que se llama cuando un temporizador se activa
-	private void OnTimerTimeout()
+	protected void OnTimerTimeout()
 	{
 		int key = (int)(GD.Randi() % 4);  // escoge un carril al azar de los cuatro
 		Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
