@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://deiq1gqanbh8l"]
+
+[ext_resource type="Script" path="res://MENU/Scrips/MenuSelect.cs" id="1_t1ele"]
+[ext_resource type="Texture2D" uid="uid://drann5t6g8ryt" path="res://icon.svg" id="2_rivs0"]
+
+[node name="MenuSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1ele")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.690196, 1, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = -148.5
+offset_right = 392.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 100
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "SELECTOR DE NIVELES"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_rivs0")
+
+[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_rivs0")
+
+[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_rivs0")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Exit_Button" type="TextureButton" parent="VBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("2_rivs0")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]
+[connection signal="pressed" from="VBoxContainer2/Exit_Button" to="." method="_on_exit_button_pressed"]
