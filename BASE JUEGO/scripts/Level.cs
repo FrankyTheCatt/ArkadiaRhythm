@@ -6,10 +6,10 @@ using Godot.Collections; // referencia al espacio de nombres correcto para usar 
 
 public partial class Level : Node2D
 {
-	private List<float> positions = new List<float>(); // posiciones X de cada carril
-	private List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
-	private PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
-	private SerialReader serialReader;
+	protected List<float> positions = new List<float>(); // posiciones X de cada carril
+	protected List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
+	protected PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
+	protected SerialReader serialReader;
 	
 	public override void _Ready()
 	{

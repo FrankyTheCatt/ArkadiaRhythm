@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwhdkt5ulviq6"]
 
-[ext_resource type="Script" path="res://MENU/menu_inicio.gd" id="1_77pig"]
+[ext_resource type="Script" path="res://MENU/Scrips/MainMenu.cs" id="1_xl14m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d06f3"]
 bg_color = Color(0.364706, 0.666667, 0.0784314, 0.941176)
@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_77pig")
+script = ExtResource("1_xl14m")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -77,6 +77,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_rle7u")
 theme_override_styles/normal = SubResource("StyleBoxFlat_h4dba")
 text = "SALIR"
 
+[connection signal="button_up" from="VBoxContainer/play" to="." method="_on_play_button_up"]
 [connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
+[connection signal="button_up" from="VBoxContainer/options" to="." method="_on_options_button_up"]
 [connection signal="pressed" from="VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="button_up" from="VBoxContainer/quit" to="." method="_on_quit_button_up"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
