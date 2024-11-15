@@ -1,5 +1,8 @@
 using Godot;
 using System.Collections.Generic;
+using System.IO;
+using Godot.Collections; // referencia al espacio de nombres correcto para usar Dictionary
+
 
 public partial class Level : Node2D
 {
@@ -7,12 +10,12 @@ public partial class Level : Node2D
 	protected List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
 	protected PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
 	protected SerialReader serialReader;
-
+	
 	public override void _Ready()
 	{
 		GD.Print("Estructura del árbol de nodos: ");
 		GetTree().Root.PrintTreePretty();  // verifica la estructura del árbol de nodos para saber si toma los nodos bn
-
+		
 		// cargaa la escena KeyObject para instanciar nuevas notas y que no se bugeee!!!!
 		keyObjectScene = (PackedScene)ResourceLoader.Load("res://BASE JUEGO/KeyObject.tscn");
 
@@ -36,41 +39,130 @@ public partial class Level : Node2D
 		GetNodeOrNull<Azul>("Objects/ColorObject2/Azul")?.SetSerialReader(serialReader);
 		GetNodeOrNull<Amarillo>("Objects/ColorObject3/Amarillo")?.SetSerialReader(serialReader);
 
-		// crear temporizadores para spawnear las motas en cada carril
-		for (int i = 0; i < 4; i++)
+		//timers para cada color
+		Timer timer_rojo = new Timer();
+		Timer timer_azul = new Timer();
+		Timer timer_verde = new Timer();
+		Timer timer_amarillo = new Timer();
+
+		// Load JSON
+		Godot.Collections.Dictionary data = new Godot.Collections.Dictionary();
+		string json = Json.Stringify(data);
+		string path = ProjectSettings.GlobalizePath("res://BASE JUEGO/mapeaditos/");
+		GD.Print(LoadTextFromFile(path, "tiempos_teclas.json"));	
+		string loadedData = LoadTextFromFile(path, "tiempos_teclas.json");
+		
+		Json jsonLoader = new Json();
+		Error error = jsonLoader.Parse(loadedData);
+		
+		if(error != Error.Ok){
+			GD.Print(error);
+			return;
+		}
+		Godot.Collections.Dictionary loadedDataDict = (Godot.Collections.Dictionary)jsonLoader.Data;
+		
+		//GD.Print(loadedDataDict["amarillo_times"]);
+		
+		var amarillo_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict["amarillo_times"])
 		{
-			Timer timer = new Timer();
-			timer.WaitTime = (float)GD.RandRange(1.0, 3.0);  // da diferente ritmo para cada carril
-			timer.OneShot = false;
-			timer.Autostart = true;
-			timer.Connect("timeout", new Callable(this, nameof(OnTimerTimeout)));
-			timers.Add(timer);
-			AddChild(timer);
+			amarillo_times_list.Add((float)time);
 			
 		}
-	}
 
-	// método que se llama cuando un temporizador se activa
-	protected void OnTimerTimeout()
+		for (int i = 0; i < amarillo_times_list.Count; i++)
+		{
+			GD.Print(amarillo_times_list[i]);
+		}
+		var verde_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict["verde_times"])
+		{
+			verde_times_list.Add((float)time);
+		}
+
+		for (int i = 0; i < verde_times_list.Count; i++)
+		{
+			GD.Print(verde_times_list[i]);
+		}
+
+		var azul_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict["azul_times"])
+		{
+			azul_times_list.Add((float)time);
+		}
+
+		for (int i = 0; i < azul_times_list.Count; i++)
+		{
+			GD.Print(azul_times_list[i]);
+		}
+
+		var rojo_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict["rojo_times"])
+		{
+			rojo_times_list.Add((float)time);
+		}
+
+		 for (int i = 0; i < rojo_times_list.Count; i++)
+		 {
+		 	GD.Print(rojo_times_list[i]);
+		 }
+
+	SetupTimersForLane(rojo_times_list, 0);     // Carril rojo
+	SetupTimersForLane(azul_times_list, 1);     // Carril azul
+	SetupTimersForLane(verde_times_list, 2);    // Carril verde
+	SetupTimersForLane(amarillo_times_list, 3); // Carril amarillo
+}
+
+private void SetupTimersForLane(List<float> timesList, int key)
+{
+	foreach (var time in timesList)
 	{
-		int key = (int)(GD.Randi() % 4);  // escoge un carril al azar de los cuatro
-		Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
+		Timer timer = new Timer();
+		AddChild(timer);
+		timer.WaitTime = time;
+		timer.OneShot = true;
 
-		// instanciar un nuevo KeyObject a partir de la plantilla
-		if (keyObjectScene != null)
-		{
-			var newKeyObject = (KeyObject)keyObjectScene.Instantiate();
-			AddChild(newKeyObject);
+		// Conecta la señal Timeout para llamar a una función que spawnea el objeto en el carril especificado
+		timer.Timeout += () => SpawnKeyObjectInLane(key);
+		timer.Start();
+	}
+}
 
-			// logica para inicializar el KeyObject en el carril correcto
-			newKeyObject.Spawn(key, pos);  // Spawn de la nota en la posición del carril
-			newKeyObject.SetSerialReader(serialReader);  // asignar el SerialReader al nuevo objeto para crear la nota
-			newKeyObject.Visible = true;   // asegurarse de que sea visible la nota
-			GD.Print("Nota generada en el carril: " + key);
-		}
-		else
+private void SpawnKeyObjectInLane(int key)
+{
+	Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
+
+	if (keyObjectScene != null)
+	{
+		var newKeyObject = (KeyObject)keyObjectScene.Instantiate();
+		AddChild(newKeyObject);
+
+		// Inicializa el KeyObject en el carril correcto
+		newKeyObject.Spawn(key, pos);  // Posición en el carril especificado
+		newKeyObject.SetSerialReader(serialReader);  // Asigna el SerialReader al nuevo objeto
+		newKeyObject.Visible = true;  // Asegura que la nota sea visible
+		GD.Print("Nota generada en el carril: " + key);
+	}
+	else
+	{
+		GD.PrintErr("Error: No se pudo cargar la escena de KeyObject.");
+	}
+}
+	
+	private string LoadTextFromFile(string path, string fileName){
+		string data = null;
+		path = Path.Join(path,fileName);
+		
+		if(!File.Exists(path)) return null;
+		
+		try
 		{
-			GD.PrintErr("Error: No se pudo cargar la escena de KeyObject.");
+			data = File.ReadAllText(path);
 		}
+		catch (System.Exception e)
+		{
+			GD.Print(e);
+		}
+		return data;
 	}
 }

@@ -7,7 +7,7 @@ public partial class KeyObject : Area2D
 	private bool estaDentro = false;
 	private int sensorNumber;  // número del sensor (1-4)
 	private SerialReader serialReader;
-
+	private Key keySelected;
 	// método para asignar SerialReader desde Level
 	public void SetSerialReader(SerialReader sr)
 	{
@@ -28,12 +28,16 @@ public partial class KeyObject : Area2D
 	}
 
 	// Hace que la nota caiga
-	public override void _Process(double delta)
-	{
-		if (Visible)  // solo procesar si el objeto está visible
-		{
-			Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas
-
+	public override void _Process(double delta){
+		Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas	
+		if (estaDentro){
+			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
+			{
+				GD.Print("debug => ¡Qué bieeeeeeen!");
+				QueueFree();  // Elimina la nota si la tecla correcta fue presionada
+			}
+		}
+		if (Visible){  // solo procesar si el objeto está visible
 			if (Position.Y > 950)  // Cuando sale de la pantalla
 			{
 				GD.Print("Nota eliminada, fuera de la pantalla");
@@ -61,10 +65,7 @@ public partial class KeyObject : Area2D
 		Connect("area_exited", new Callable(this, nameof(_on_area_exited)));
 	}
 
-
-	
-
-	// inicializai la nota en un carril específico
+	// inicializa la nota en un carril específico
 	public void Spawn(int key, Vector2 pos)
 	{
 		Position = pos;  // ajustar posición
@@ -75,20 +76,24 @@ public partial class KeyObject : Area2D
 		switch (key)
 		{
 			case 0:
+				keySelected = Key.A;
 				Modulate = new Color(1, 0, 0);  // rojo (sensor 1)
 				break;
 			case 1:
+				keySelected = Key.S;
 				Modulate = new Color(1, 1, 0);  // amarillo (sensor 2)
 				break;
 			case 2:
+				keySelected = Key.D;
 				Modulate = new Color(0, 0, 1);  // azul (sensor 3)
 				break;
 			case 3:
+				keySelected = Key.F;
 				Modulate = new Color(0, 1, 0);  // verde (sensor 4)
 				break;
 		}
 	}
-
+	
 	public void _on_area_entered(Area2D area)
 	{
 		estaDentro = true;
