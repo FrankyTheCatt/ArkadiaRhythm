@@ -1,6 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://ciwmo8oon64p2"]
+[gd_scene load_steps=28 format=3 uid="uid://ciwmo8oon64p2"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
+[ext_resource type="PackedScene" uid="uid://clrfowbcr1nc3" path="res://CircleObject.tscn" id="2_3eycq"]
+[ext_resource type="PackedScene" uid="uid://bnap3x7l760my" path="res://KeyObject.tscn" id="2_xeu0g"]
 [ext_resource type="Texture2D" uid="uid://ipvngivo4ipp" path="res://BASE JUEGO/assets/Daco_1717412.png" id="4_b301r"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Verde.cs" id="4_y5beh"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_rg5wb"]
@@ -233,6 +235,13 @@ _data = {
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_s1inn")
+
+[node name="CircleObject" parent="." instance=ExtResource("2_3eycq")]
+
+[node name="KeyObject" parent="." instance=ExtResource("2_xeu0g")]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(937, 67)
 
 [node name="Objects" type="Node2D" parent="."]
 

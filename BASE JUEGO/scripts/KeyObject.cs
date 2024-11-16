@@ -11,7 +11,20 @@ public partial class KeyObject : Area2D
 	// método para asignar SerialReader desde Level
 	public void SetSerialReader(SerialReader sr)
 	{
-@@ -28,12 +28,17 @@
+		serialReader = sr;
+		if (serialReader != null)
+		{
+			CallDeferred(nameof(DeferredConnectSerialReader));
+		}
+	}
+
+	private void DeferredConnectSerialReader()
+	{
+		if (serialReader != null)
+		{
+			serialReader.Connect(nameof(SerialReader.SensorActivatedEventHandler), new Callable(this, nameof(OnSensorActivated)));
+			GD.Print("SerialReader conectado correctamente.");
+		}
 	}
 
 	// Hace que la nota caiga
@@ -29,7 +42,27 @@ public partial class KeyObject : Area2D
 			if (Position.Y > 950)  // Cuando sale de la pantalla
 			{
 				GD.Print("Nota eliminada, fuera de la pantalla");
-@@ -61,10 +66,7 @@
+				QueueFree();  // elimina la nota al salir de la pantalla
+			}
+		}
+	}
+
+	// método que se llama cuando el sensor se activa
+	public void OnSensorActivated(int sensorNumber)
+	{
+		GD.Print($"Nota posición Y: {Position.Y}, estaDentro: {estaDentro}, sensorNumber: {this.sensorNumber}");
+
+		// es para asegurarse de que el sensor activado es el correcto y que la nota está dentro del área
+		if (estaDentro && sensorNumber == this.sensorNumber)
+		{
+			GD.Print("Sensor " + sensorNumber + " activado correctamente en el área. Eliminando nota.");
+			QueueFree();  // eliminai la nota si el sensor correcto se activa y la nota está en el área
+		}
+	}
+	public override void _Ready()
+	{
+		// conectar las señales para las colisiones de área
+		Connect("area_entered", new Callable(this, nameof(_on_area_entered)));
 		Connect("area_exited", new Callable(this, nameof(_on_area_exited)));
 	}
 
@@ -37,7 +70,10 @@ public partial class KeyObject : Area2D
 	public void Spawn(int key, Vector2 pos)
 	{
 		Position = pos;  // ajustar posición
-@@ -75,30 +77,34 @@
+		sensorNumber = key + 1;  // asignar el número del sensor basado en el carril (1-4)
+		Visible = true;  // hacer visible la nota
+
+		// cambiar color según el carril de la nota
 		switch (key)
 		{
 			case 0:

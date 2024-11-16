@@ -19,7 +19,6 @@ public partial class DamageNote : Area2D
 				levelScript.TakeDamage(10); // Aplica 10 de daño o el valor que desees
 			}
 				QueueFree(); // Destruye la nota después de hacer daño
-			}
 		}
 	}
 }

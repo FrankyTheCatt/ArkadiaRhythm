@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3qvbvtoafqhr"]
+
+[ext_resource type="Script" path="res://MENU/UI.gd" id="1_evmfb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08ik7"]
+bg_color = Color(0.592157, 0.784314, 0.972549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cs7xe"]
+bg_color = Color(1, 0.270855, 0.244629, 1)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_evmfb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_08ik7")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.296875
+anchor_top = 0.0648148
+anchor_right = 0.710938
+anchor_bottom = 0.106481
+grow_horizontal = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_cs7xe")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Button_options" type="Button" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 90.0
+offset_bottom = 93.0
+expand_icon = true
+
+[connection signal="pressed" from="Button_options" to="." method="_on_button_options_pressed"]
