@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dtqrsyjvohjko"]
+
+[ext_resource type="Script" path="res://Minijuego Leds/Scripts/Minijuego.cs" id="1_uvsky"]
+
+[node name="MinijuegoLeds" type="Node2D"]
+script = ExtResource("1_uvsky")
