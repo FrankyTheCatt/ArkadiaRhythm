@@ -7,88 +7,58 @@ public partial class KeyObject : Area2D
 	private bool estaDentro = false;
 	private int sensorNumber;  // número del sensor (1-4)
 	private SerialReader serialReader;
-
+	private Key keySelected;
 	// método para asignar SerialReader desde Level
 	public void SetSerialReader(SerialReader sr)
 	{
-		serialReader = sr;
-		if (serialReader != null)
-		{
-			CallDeferred(nameof(DeferredConnectSerialReader));
-		}
-	}
-
-	private void DeferredConnectSerialReader()
-	{
-		if (serialReader != null)
-		{
-			serialReader.Connect(nameof(SerialReader.SensorActivatedEventHandler), new Callable(this, nameof(OnSensorActivated)));
-			GD.Print("SerialReader conectado correctamente.");
-		}
+@@ -28,12 +28,17 @@
 	}
 
 	// Hace que la nota caiga
-	public override void _Process(double delta)
-	{
-		if (Visible)  // solo procesar si el objeto está visible
-		{
-			Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas
-
+	public override void _Process(double delta){
+		Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas	
+		if (estaDentro){
+			GD.Print("debug => Tecla asignada:", keySelected);
+			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
+			{
+				GD.Print("debug => ¡Qué bieeeeeeen!");
+				QueueFree();  // Elimina la nota si la tecla correcta fue presionada
+			}
+		}
+		if (Visible){  // solo procesar si el objeto está visible
 			if (Position.Y > 950)  // Cuando sale de la pantalla
 			{
 				GD.Print("Nota eliminada, fuera de la pantalla");
-				QueueFree();  // elimina la nota al salir de la pantalla
-			}
-		}
-	}
-
-	// método que se llama cuando el sensor se activa
-	public void OnSensorActivated(int sensorNumber)
-	{
-		GD.Print($"Nota posición Y: {Position.Y}, estaDentro: {estaDentro}, sensorNumber: {this.sensorNumber}");
-
-		// es para asegurarse de que el sensor activado es el correcto y que la nota está dentro del área
-		if (estaDentro && sensorNumber == this.sensorNumber)
-		{
-			GD.Print("Sensor " + sensorNumber + " activado correctamente en el área. Eliminando nota.");
-			QueueFree();  // eliminai la nota si el sensor correcto se activa y la nota está en el área
-		}
-	}
-	public override void _Ready()
-	{
-		// conectar las señales para las colisiones de área
-		Connect("area_entered", new Callable(this, nameof(_on_area_entered)));
+@@ -61,10 +66,7 @@
 		Connect("area_exited", new Callable(this, nameof(_on_area_exited)));
 	}
 
-
-	
-
-	// inicializai la nota en un carril específico
+	// inicializa la nota en un carril específico
 	public void Spawn(int key, Vector2 pos)
 	{
 		Position = pos;  // ajustar posición
-		sensorNumber = key + 1;  // asignar el número del sensor basado en el carril (1-4)
-		Visible = true;  // hacer visible la nota
-
-		// cambiar color según el carril de la nota
+@@ -75,30 +77,34 @@
 		switch (key)
 		{
 			case 0:
+				keySelected = Key.A;
 				Modulate = new Color(1, 0, 0);  // rojo (sensor 1)
 				break;
 			case 1:
+				keySelected = Key.S;
 				Modulate = new Color(1, 1, 0);  // amarillo (sensor 2)
 				break;
 			case 2:
+				keySelected = Key.D;
 				Modulate = new Color(0, 0, 1);  // azul (sensor 3)
 				break;
 			case 3:
+				keySelected = Key.F;
 				Modulate = new Color(0, 1, 0);  // verde (sensor 4)
 				break;
 		}
 	}
-
+	
 	public void _on_area_entered(Area2D area)
 	{
 		estaDentro = true;
