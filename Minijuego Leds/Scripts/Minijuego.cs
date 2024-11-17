@@ -6,6 +6,8 @@ using System.Linq;
 
 public partial class Minijuego : Node
 {
+	[Export] public NodePath PlayerLife;
+	private PlayerLife _player;
 	private SerialPort _arduino;
 	private double _elapsedTime = 0.0; // Tiempo transcurrido en segundos
 	private List<LedEvent> _sequence = new List<LedEvent>
@@ -35,6 +37,13 @@ public partial class Minijuego : Node
 	
 	public override void _Ready()
 	{
+		_player = GetNode<PlayerLife>("UiPersonaje/Player2");
+		res://UI/PlayerLife.cs
+		if (_player == null)
+		{
+			GD.PrintErr("No se pudo encontrar al jugador. Asegúrate de configurar PlayerPath.");
+		}
+		
 		try
 		{
 			_arduino = new SerialPort("COM3", 9600); // Cambia "COM3" según el puerto en tu sistema
@@ -118,13 +127,13 @@ public partial class Minijuego : Node
 		if (penalize)
 		{
 			QuitarVida();
-			}
+		}
 	}
 	
 	private void QuitarVida()
 	{
 		GD.Print("¡Vida reducida!");
-		// Aquí puedes implementar la lógica para reducir la vida del jugador.
+		_player.TakeDamage(25);
 	}
 	
 	private void ProcessSensorInput(int sensorPressed, LedEvent ledEvent)
@@ -138,19 +147,10 @@ public partial class Minijuego : Node
 			GD.Print($"Sensor {sensorPressed} no corresponde al LED {expectedSensor}. Ignorando.");
 			return;
 		}
-		// Verifica el tiempo muerto (debounce) para evitar activaciones repetidas
-		if (!_lastSensorActivation.ContainsKey(sensorPressed))
-		{
-			_lastSensorActivation[sensorPressed] = -_debounceTime; // Inicializa si no existe
-		}
-		if ((_elapsedTime - _lastSensorActivation[sensorPressed]) < _debounceTime)
-		{
-			GD.Print($"Input ignorado por debounce: Sensor {sensorPressed}");
-			return;
-		}
 		// Si es válido, apaga el LED y actualiza el tiempo de activación
 		GD.Print($"Jugador apagó LED {ledEvent.Led}.");
 		DeactivateLed(ledEvent, false); // No quita vida
+		_player.Heal(15);
 		_lastSensorActivation[sensorPressed] = _elapsedTime;
 		ledEvent.IsCompleted = true;
 		}
