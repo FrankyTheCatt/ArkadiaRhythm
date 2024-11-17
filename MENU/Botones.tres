@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://chhne235x1p5f"]
+
+[ext_resource type="Texture2D" uid="uid://wtm84db8g8wk" path="res://MENU/Ultimate Pixel 3.2/Menu buttons v2/Blue/menu_button02.png" id="1_gdhu3"]
+[ext_resource type="FontFile" uid="uid://b2y7m1xh2l3vd" path="res://MENU/Assets/Minecraft.ttf" id="1_kv7u5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ukuy"]
+texture = ExtResource("1_gdhu3")
+region_rect = Rect2(1, 1, 44, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_52kje"]
+texture = ExtResource("1_gdhu3")
+region_rect = Rect2(1, 1, 44, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_op6ul"]
+texture = ExtResource("1_gdhu3")
+region_rect = Rect2(47, 3, 44, 14)
+
+[resource]
+Button/colors/font_color = Color(0, 0.858824, 0.952941, 1)
+Button/colors/font_disabled_color = Color(1, 1, 1, 0)
+Button/colors/font_focus_color = Color(0, 0.858824, 0.952941, 1)
+Button/colors/font_hover_color = Color(0, 0.858824, 0.952941, 1)
+Button/colors/font_hover_pressed_color = Color(1.57869e-05, 0.857662, 0.954691, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 0)
+Button/colors/font_pressed_color = Color(0.739098, 0.92808, 0.942869, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_color = Color(1, 1, 1, 0)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+Button/colors/icon_normal_color = Color(0.654902, 0.901961, 0.921569, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 0)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 55
+Button/fonts/font = ExtResource("1_kv7u5")
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = SubResource("StyleBoxTexture_3ukuy")
+Button/styles/normal = SubResource("StyleBoxTexture_52kje")
+Button/styles/pressed = SubResource("StyleBoxTexture_op6ul")
