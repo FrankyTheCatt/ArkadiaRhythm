@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://b43a3peoahrk8"]
+
+[node name="OpcionesDeplegable" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" type="TabContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Video" type="TabBar" parent="CanvasLayer/Settings"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Settings/Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.5
+offset_top = -38.5
+offset_right = 18.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Settings/Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="FullScreen" type="Label" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "FullScreen
+"
+
+[node name="Borderless" type="Label" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Borderless"
+
+[node name="Vsync" type="Label" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vsync"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Settings/Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="FullScreen" type="CheckBox" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Borderless" type="CheckBox" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Vsync" type="OptionButton" parent="CanvasLayer/Settings/Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+selected = 1
+item_count = 4
+popup/item_0/text = "Disabled"
+popup/item_1/text = "Enabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+popup/item_3/text = "Mailbox"
+popup/item_3/id = 3
+
+[node name="Audio" type="TabBar" parent="CanvasLayer/Settings"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Controls" type="TabBar" parent="CanvasLayer/Settings"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
