@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b43a3peoahrk8"]
-
-[ext_resource type="Script" path="res://MENU/Video.cs" id="1_ywyan"]
+[gd_scene format=3 uid="uid://b43a3peoahrk8"]
 
 [node name="OpcionesDeplegable" type="Node2D"]
 
@@ -16,7 +14,6 @@ current_tab = 0
 
 [node name="Video" type="TabBar" parent="CanvasLayer/Settings"]
 layout_mode = 2
-script = ExtResource("1_ywyan")
 metadata/_tab_index = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Settings/Video"]

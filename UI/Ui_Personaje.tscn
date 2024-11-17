@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bej6ietgrkay7"]
+
+[ext_resource type="Script" path="res://UI/TestScript.cs" id="1_rj03w"]
+[ext_resource type="Script" path="res://UI/PlayerLife.cs" id="2_i0itr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82tqh"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olqn8"]
+bg_color = Color(0.114526, 0.6628, 0.810272, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="UiPersonaje" type="Node2D"]
+position = Vector2(196, 575)
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("2_i0itr")
+
+[node name="Timer" type="Timer" parent="Player"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_left = -161.0
+offset_top = -8.0
+offset_right = 283.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_82tqh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_olqn8")
+value = 100.0
+
+[node name="TestController" type="Node2D" parent="."]
+script = ExtResource("1_rj03w")
+PlayerLife = NodePath("../Player")
+
+[connection signal="timeout" from="Player/Timer" to="Player" method="_on_timer_timeout"]
+[connection signal="value_changed" from="Player/ProgressBar" to="Player" method="_on_progress_bar_value_changed"]
