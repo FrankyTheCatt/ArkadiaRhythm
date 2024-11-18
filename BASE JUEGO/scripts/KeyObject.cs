@@ -31,7 +31,7 @@ public partial class KeyObject : Area2D
 	public override void _Process(double delta){
 		Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas	
 		if (estaDentro){
-			GD.Print("debug => Tecla asignada:", keySelected);
+			//GD.Print("debug => Tecla asignada:", keySelected);
 			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
 			{
 				GD.Print("debug => ¡Qué bieeeeeeen!");

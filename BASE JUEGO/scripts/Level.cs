@@ -131,19 +131,12 @@ public partial class Level : Node2D
 		}
 		
 		damageNoteScene = (PackedScene)ResourceLoader.Load("res://Niveles/Nivel1/DamageNote.tscn");
-		// Configurar un temporizador para generar notas de daño
-		Timer damageNoteTimer = new Timer();
-		damageNoteTimer.WaitTime = (float)GD.RandRange(2.0, 5.0); // Intervalo aleatorio para las notas de daño
-		damageNoteTimer.OneShot = false;
-		damageNoteTimer.Autostart = true;
-		damageNoteTimer.Connect("timeout", new Callable(this, nameof(SpawnDamageNote)));
-		AddChild(damageNoteTimer);
 }
 
 // método que se llama cuando un temporizador se activa
 protected void OnTimerTimeout()
 {
-	int key = (int)(GD.Randi() % 3);  // escoge un carril al azar de los cuatro
+	int key = (int)(GD.Randi() % 4);  // escoge un carril al azar de los cuatro
 	Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
 
 	// instanciar un nuevo DamageNote a partir de la plantilla
@@ -153,7 +146,7 @@ protected void OnTimerTimeout()
 		AddChild(newDamageNote);
 
 		// logica para inicializar el DamageNote en el carril correcto
-		newDamageNote.GlobalPosition = pos;  // Spawn de la nota en la posición del carril
+		newDamageNote.Spawn(key, pos);  // Spawn de la nota en la posición del carril
 		newDamageNote.SetSerialReader(serialReader);  // asignar el SerialReader al nuevo objeto para crear la nota
 		newDamageNote.Visible = true;   // asegurarse de que sea visible la nota
 		GD.Print("Nota de daño generada en el carril: " + key);
@@ -164,36 +157,6 @@ protected void OnTimerTimeout()
 	}
 }
 
-  private void SpawnDamageNote()
-	{
-		GD.Print("Intentando generar una nota de daño...");
-
-		// Generar un índice aleatorio entre 0 y 3
-		int randomIndex = (int)GD.Randi() % 4;
-
-		// Verificar si el índice es válido
-		if (randomIndex < 0 || randomIndex >= positions.Count)
-		{
-			GD.PrintErr("Error: Índice fuera de rango.");
-			return;
-		}
-
-		// Usar el índice aleatorio para definir la posición de la nota de daño
-		Vector2 spawnPosition = new Vector2(positions[randomIndex], 0);
-
-		// Instanciar y añadir la nota de daño
-		if (damageNoteScene != null)
-		{
-			DamageNote damageNote = (DamageNote)damageNoteScene.Instantiate();
-			damageNote.GlobalPosition = spawnPosition;
-			AddChild(damageNote);
-			GD.Print("Nota de daño generada en el carril: " + randomIndex + " en la posición: " + spawnPosition);
-		}
-		else
-		{
-			GD.PrintErr("Error: La escena de DamageNote no está cargada.");
-		}
-	}
 	public void TakeDamage(float damageAmount)
 {
 	// Reducir la vida del jugador

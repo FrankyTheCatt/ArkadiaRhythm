@@ -3,7 +3,6 @@ using System;
 
 public partial class DamageNote : Area2D
 {
-
 	private const int Gravedad = 500;  // velocidad de caída
 	private bool estaDentro = false;
 	private int sensorNumber;  // número del sensor (1-4)
@@ -33,10 +32,11 @@ public partial class DamageNote : Area2D
 	public override void _Process(double delta){
 		Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas	
 		if (estaDentro){
-			GD.Print("debug => Tecla asignada:", keySelected);
+			//GD.Print("debug => Tecla asignada:", keySelected);
 			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
 			{
-				GD.Print("debug => ¡Qué bieeeeeeen!");
+				GD.Print("debug => ¡HAZ APRETADO LA TECLA DE DAÑO!");
+				level.TakeDamage(10);  // Llama a TakeDamage en Level
 				QueueFree();  // Elimina la nota si la tecla correcta fue presionada
 			}
 		}
@@ -63,6 +63,7 @@ public partial class DamageNote : Area2D
 	}
 	public override void _Ready()
 	{
+		level = GetParent<Level>();
 		// conectar las señales para las colisiones de área
 		Connect("area_entered", new Callable(this, nameof(_on_area_entered)));
 		Connect("area_exited", new Callable(this, nameof(_on_area_exited)));
@@ -101,7 +102,6 @@ public partial class DamageNote : Area2D
 	{
 		estaDentro = true;
 		GD.Print($"Nota ha entrado en el área de colisión, posición Y: {Position.Y}, área: {area.Name}");
-		level.TakeDamage(10);
 	}
 
 	public void _on_area_exited(Area2D area)
@@ -109,5 +109,6 @@ public partial class DamageNote : Area2D
 		estaDentro = false;
 		GD.Print($"Nota ha salido del área de colisión, posición Y: {Position.Y}, área: {area.Name}");
 	}
+
 
 }
