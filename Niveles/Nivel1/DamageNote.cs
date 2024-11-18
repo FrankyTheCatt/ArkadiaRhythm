@@ -10,6 +10,7 @@ public partial class DamageNote : Area2D
 	private SerialReader serialReader;
 	private Key keySelected;
 	// método para asignar SerialReader desde Level
+	private Level level;
 	public void SetSerialReader(SerialReader sr)
 	{
 		serialReader = sr;
@@ -100,6 +101,7 @@ public partial class DamageNote : Area2D
 	{
 		estaDentro = true;
 		GD.Print($"Nota ha entrado en el área de colisión, posición Y: {Position.Y}, área: {area.Name}");
+		level.TakeDamage(10);
 	}
 
 	public void _on_area_exited(Area2D area)

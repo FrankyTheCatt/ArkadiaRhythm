@@ -133,7 +133,7 @@ public partial class Level : Node2D
 		damageNoteScene = (PackedScene)ResourceLoader.Load("res://Niveles/Nivel1/DamageNote.tscn");
 		// Configurar un temporizador para generar notas de daño
 		Timer damageNoteTimer = new Timer();
-		damageNoteTimer.WaitTime = (float)GD.RandRange(5.0, 8.0); // Intervalo aleatorio para las notas de daño
+		damageNoteTimer.WaitTime = (float)GD.RandRange(2.0, 5.0); // Intervalo aleatorio para las notas de daño
 		damageNoteTimer.OneShot = false;
 		damageNoteTimer.Autostart = true;
 		damageNoteTimer.Connect("timeout", new Callable(this, nameof(SpawnDamageNote)));
@@ -143,7 +143,7 @@ public partial class Level : Node2D
 // método que se llama cuando un temporizador se activa
 protected void OnTimerTimeout()
 {
-	int key = (int)(GD.Randi() % 4);  // escoge un carril al azar de los cuatro
+	int key = (int)(GD.Randi() % 3);  // escoge un carril al azar de los cuatro
 	Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
 
 	// instanciar un nuevo DamageNote a partir de la plantilla
@@ -194,6 +194,17 @@ protected void OnTimerTimeout()
 			GD.PrintErr("Error: La escena de DamageNote no está cargada.");
 		}
 	}
+	public void TakeDamage(float damageAmount)
+{
+	// Reducir la vida del jugador
+	playerHealth -= damageAmount;
+	GD.Print("Daño recibido: " + damageAmount + ". Vida restante: " + playerHealth);
+	if (playerHealth <= 0)
+	{
+		GD.Print("¡Game Over! Vida agotada.");
+		// Lógica adicional si el jugador pierde toda la vida, como reiniciar el nivel
+	}
+}
 
 private void SetupTimersForLane(List<float> timesList, int key)
 {
