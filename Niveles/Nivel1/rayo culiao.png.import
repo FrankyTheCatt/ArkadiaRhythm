@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch5yl3jh6oiig"
-path="res://.godot/imported/rayo.png-c87fd3d7c244e431cf1d0f8fbdd09d18.ctex"
+uid="uid://cadcmgfnahswc"
+path="res://.godot/imported/rayo culiao.png-365deb5ecf5b1620be1c09c020636078.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Niveles/Nivel1/rayo.png"
-dest_files=["res://.godot/imported/rayo.png-c87fd3d7c244e431cf1d0f8fbdd09d18.ctex"]
+source_file="res://Niveles/Nivel1/rayo culiao.png"
+dest_files=["res://.godot/imported/rayo culiao.png-365deb5ecf5b1620be1c09c020636078.ctex"]
 
 [params]
 
