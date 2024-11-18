@@ -1,18 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://f33d6ohpc42k"]
+[gd_scene load_steps=5 format=3 uid="uid://f33d6ohpc42k"]
 
 [ext_resource type="Script" path="res://Niveles/Nivel1/DamageNote.cs" id="1_yv2mx"]
-[ext_resource type="Texture2D" uid="uid://ch5yl3jh6oiig" path="res://Niveles/Nivel1/rayo.png" id="2_gfiy1"]
+[ext_resource type="Texture2D" uid="uid://cadcmgfnahswc" path="res://Niveles/Nivel1/rayo culiao.png" id="2_sufxm"]
+[ext_resource type="Script" path="res://Niveles/Nivel1/Nivel1.cs" id="3_a0401"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y5ub1"]
-size = Vector2(78, 20)
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvvsi"]
+radius = 80.16
 
 [node name="DamageNote" type="Area2D"]
 script = ExtResource("1_yv2mx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_y5ub1")
+shape = SubResource("CircleShape2D_uvvsi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 10.5)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_gfiy1")
+position = Vector2(382, 123)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_sufxm")
+script = ExtResource("3_a0401")
