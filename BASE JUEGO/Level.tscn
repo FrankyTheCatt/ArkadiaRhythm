@@ -1,8 +1,6 @@
-[gd_scene load_steps=28 format=3 uid="uid://ciwmo8oon64p2"]
+[gd_scene load_steps=26 format=3 uid="uid://ciwmo8oon64p2"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
-[ext_resource type="PackedScene" uid="uid://clrfowbcr1nc3" path="res://CircleObject.tscn" id="2_3eycq"]
-[ext_resource type="PackedScene" uid="uid://bnap3x7l760my" path="res://KeyObject.tscn" id="2_xeu0g"]
 [ext_resource type="Texture2D" uid="uid://ipvngivo4ipp" path="res://BASE JUEGO/assets/Daco_1717412.png" id="4_b301r"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Verde.cs" id="4_y5beh"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_rg5wb"]
@@ -236,20 +234,13 @@ _data = {
 [node name="Level" type="Node2D"]
 script = ExtResource("1_s1inn")
 
-[node name="CircleObject" parent="." instance=ExtResource("2_3eycq")]
-
-[node name="KeyObject" parent="." instance=ExtResource("2_xeu0g")]
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(937, 67)
-
 [node name="Objects" type="Node2D" parent="."]
 
 [node name="SerialReader" type="Node" parent="Objects"]
 script = ExtResource("9_f2yjl")
 
 [node name="ColorObject" type="Area2D" parent="Objects"]
-position = Vector2(1383, 729)
+position = Vector2(1021, 536)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject"]
 shape = SubResource("CircleShape2D_u8owt")
@@ -269,7 +260,7 @@ libraries = {
 autoplay = "SoltarVerde"
 
 [node name="ColorObject2" type="Area2D" parent="Objects"]
-position = Vector2(1065, 734)
+position = Vector2(703, 541)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject2"]
 shape = SubResource("CircleShape2D_u8owt")
@@ -289,7 +280,7 @@ libraries = {
 autoplay = "SoltarAzul"
 
 [node name="ColorObject3" type="Area2D" parent="Objects"]
-position = Vector2(774, 732)
+position = Vector2(412, 539)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject3"]
 shape = SubResource("CircleShape2D_u8owt")
@@ -309,7 +300,7 @@ libraries = {
 autoplay = "SoltarAmarillo"
 
 [node name="ColorObject4" type="Area2D" parent="Objects"]
-position = Vector2(494, 734)
+position = Vector2(132, 541)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject4"]
 shape = SubResource("CircleShape2D_u8owt")
