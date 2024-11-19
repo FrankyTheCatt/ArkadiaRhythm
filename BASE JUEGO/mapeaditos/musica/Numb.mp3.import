@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chcnyb25qnb1n"
+path="res://.godot/imported/Numb.mp3-cc01794ecea10f53dc8c10a831033496.mp3str"
+
+[deps]
+
+source_file="res://BASE JUEGO/mapeaditos/musica/Numb.mp3"
+dest_files=["res://.godot/imported/Numb.mp3-cc01794ecea10f53dc8c10a831033496.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

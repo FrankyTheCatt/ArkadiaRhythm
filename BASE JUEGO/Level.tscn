@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ciwmo8oon64p2"]
+[gd_scene load_steps=27 format=3 uid="uid://ciwmo8oon64p2"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
 [ext_resource type="Texture2D" uid="uid://ipvngivo4ipp" path="res://BASE JUEGO/assets/Daco_1717412.png" id="4_b301r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_rg5wb"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Amarillo.cs" id="6_sujv6"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Rojo.cs" id="7_1v7vv"]
+[ext_resource type="AudioStream" uid="uid://chcnyb25qnb1n" path="res://BASE JUEGO/mapeaditos/musica/Numb.mp3" id="8_exyo4"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/SerialReader.cs" id="9_f2yjl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8owt"]
@@ -318,3 +319,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ttg5p")
 }
 autoplay = "SoltarRojo"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_exyo4")
+volume_db = -30.969

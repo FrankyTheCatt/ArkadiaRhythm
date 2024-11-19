@@ -26,12 +26,13 @@ func _process(delta):
 		save_data()
 		recording_enabled = false  # Detiene el registro de teclas
 
-	# Solo registra las teclas si `recording_enabled` es True
+	var delay = 0.0  # Define el retraso en segundos
+
 	if recording_enabled:
-		# Tecla A (Rojo)
+	# Tecla A (Rojo)
 		if Input.is_physical_key_pressed(KEY_A):
 			if not is_a_pressed:
-				var time = Time.get_ticks_msec() / 1000.0
+				var time = (Time.get_ticks_msec() / 1000.0) + delay
 				rojo_times.append(time)
 				print("Tiempo registrado para tecla A (Rojo):", time)
 				is_a_pressed = true
@@ -39,9 +40,9 @@ func _process(delta):
 			is_a_pressed = false  # Se reinicia cuando se suelta la tecla
 
 		# Tecla S (Amarillo)
-		if Input.is_physical_key_pressed(KEY_S):
+		if Input.is_physical_key_pressed(KEY_F):
 			if not is_s_pressed:
-				var time = Time.get_ticks_msec() / 1000.0
+				var time = (Time.get_ticks_msec() / 1000.0) + delay
 				amarillo_times.append(time)
 				print("Tiempo registrado para tecla S (Amarillo):", time)
 				is_s_pressed = true
@@ -49,9 +50,9 @@ func _process(delta):
 			is_s_pressed = false  # Se reinicia cuando se suelta la tecla
 
 		# Tecla D (Azul)
-		if Input.is_physical_key_pressed(KEY_D):
+		if Input.is_physical_key_pressed(KEY_S):
 			if not is_d_pressed:
-				var time = Time.get_ticks_msec() / 1000.0
+				var time = (Time.get_ticks_msec() / 1000.0) + delay
 				azul_times.append(time)
 				print("Tiempo registrado para tecla D (Azul):", time)
 				is_d_pressed = true
@@ -59,14 +60,15 @@ func _process(delta):
 			is_d_pressed = false  # Se reinicia cuando se suelta la tecla
 
 		# Tecla F (Verde)
-		if Input.is_physical_key_pressed(KEY_F):
+		if Input.is_physical_key_pressed(KEY_D):
 			if not is_f_pressed:
-				var time = Time.get_ticks_msec() / 1000.0
+				var time = (Time.get_ticks_msec() / 1000.0) + delay
 				verde_times.append(time)
 				print("Tiempo registrado para tecla F (Verde):", time)
 				is_f_pressed = true
 		else:
 			is_f_pressed = false  # Se reinicia cuando se suelta la tecla
+
 
 # Función para guardar los datos en un archivo
 func save_data():

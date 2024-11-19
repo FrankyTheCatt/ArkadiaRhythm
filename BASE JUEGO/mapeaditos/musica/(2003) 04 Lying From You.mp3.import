@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bww4m0515ntn5"
+path="res://.godot/imported/(2003) 04 Lying From You.mp3-5230cd21f062b74ab978d7671c635ecf.mp3str"
+
+[deps]
+
+source_file="res://BASE JUEGO/mapeaditos/musica/(2003) 04 Lying From You.mp3"
+dest_files=["res://.godot/imported/(2003) 04 Lying From You.mp3-5230cd21f062b74ab978d7671c635ecf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
