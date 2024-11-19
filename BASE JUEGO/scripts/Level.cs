@@ -220,8 +220,10 @@ public partial class Level : Node2D
 		}
 	}
 	// método que se llama cuando un temporizador se activa
-	private void SpawnDamageNoteInLane(int key)
+	private async void SpawnDamageNoteInLane(int key)
 	{
+		await ToSignal(GetTree().CreateTimer(1.5f), "timeout"); // Espera 2.9 segundos antes de continuar
+
 		Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
 
 		if (damageNoteScene != null)
@@ -233,7 +235,7 @@ public partial class Level : Node2D
 			newDamageNote.Spawn(key, pos);  // Posición en el carril especificado
 			newDamageNote.SetSerialReader(serialReader);  // Asigna el SerialReader al nuevo objeto
 			newDamageNote.Visible = true;  // Asegura que la nota sea visible
-			GD.Print("Nota de daño generada en el carril: " + key);
+			//GD.Print("Nota de daño generada en el carril: " + key);
 		}
 		else
 		{
@@ -247,7 +249,7 @@ public partial class Level : Node2D
 		GD.Print("Daño recibido: " + damageAmount + ". Vida restante: " + playerHealth);
 		if (playerHealth <= 0)
 		{
-			GD.Print("¡Game Over! Vida agotada.");
+			GD.PrintErr("¡Game Over! Vida agotada.");
 			// Lógica adicional si el jugador pierde toda la vida, como reiniciar el nivel
 		}
 	}
@@ -279,7 +281,7 @@ public partial class Level : Node2D
 			newKeyObject.Spawn(key, pos);  // Posición en el carril especificado
 			newKeyObject.SetSerialReader(serialReader);  // Asigna el SerialReader al nuevo objeto
 			newKeyObject.Visible = true;  // Asegura que la nota sea visible
-			GD.Print("Nota generada en el carril: " + key);
+			//GD.Print("Nota generada en el carril: " + key);
 		}
 		else
 		{

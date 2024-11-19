@@ -50,7 +50,7 @@ public partial class KeyObject : Area2D
 	// método que se llama cuando el sensor se activa
 	public void OnSensorActivated(int sensorNumber)
 	{
-		GD.Print($"Nota posición Y: {Position.Y}, estaDentro: {estaDentro}, sensorNumber: {this.sensorNumber}");
+		//GD.Print($"Nota posición Y: {Position.Y}, estaDentro: {estaDentro}, sensorNumber: {this.sensorNumber}");
 
 		// es para asegurarse de que el sensor activado es el correcto y que la nota está dentro del área
 		if (estaDentro && sensorNumber == this.sensorNumber)
@@ -98,13 +98,13 @@ public partial class KeyObject : Area2D
 	public void _on_area_entered(Area2D area)
 	{
 		estaDentro = true;
-		GD.Print($"Nota ha entrado en el área de colisión, posición Y: {Position.Y}, área: {area.Name}");
+		//GD.Print($"Nota ha entrado en el área de colisión, posición Y: {Position.Y}, área: {area.Name}");
 	}
 
 	public void _on_area_exited(Area2D area)
 	{
 		estaDentro = false;
-		GD.Print($"Nota ha salido del área de colisión, posición Y: {Position.Y}, área: {area.Name}");
+		//GD.Print($"Nota ha salido del área de colisión, posición Y: {Position.Y}, área: {area.Name}");
 	}
 
 }

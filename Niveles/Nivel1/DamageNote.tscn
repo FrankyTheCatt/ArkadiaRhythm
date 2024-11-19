@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://f33d6ohpc42k"]
 
 [ext_resource type="Script" path="res://Niveles/Nivel1/DamageNote.cs" id="1_yv2mx"]
-[ext_resource type="Texture2D" uid="uid://ylwxxmbvx6oy" path="res://Niveles/Nivel1/pngkey.com-blue-lightning-bolt-png-2781965.png" id="2_cvjjq"]
+[ext_resource type="Texture2D" uid="uid://dswbibqwo3fev" path="res://Niveles/Nivel1/image.png" id="2_i2n3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvvsi"]
 radius = 36.0139
@@ -12,7 +12,7 @@ script = ExtResource("1_yv2mx")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2.33572, 0.639082)
 scale = Vector2(0.0396768, 0.0324152)
-texture = ExtResource("2_cvjjq")
+texture = ExtResource("2_i2n3v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
