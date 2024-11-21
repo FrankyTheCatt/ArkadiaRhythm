@@ -202,6 +202,10 @@ public partial class Level : Node2D
 		SetupTimersForLane(azul_times_list, 1);     // Carril azul
 		SetupTimersForLane(verde_times_list, 2);    // Carril verde
 		SetupTimersForLane(amarillo_times_list, 3); // Carril amarillo
+		
+		GetNode<AnimationPlayer>("PlayerLife/AnimationPlayer").Play("girarPlayer");
+		GetNode<AnimationPlayer>("PlayerLife2/AnimationPlayer").Play("girarPlayer");
+		
 
 	}
 //FUNCIONES
