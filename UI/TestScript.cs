@@ -18,6 +18,7 @@ public partial class TestScript : Node
 		{
 			GD.PrintErr("No se pudo encontrar al jugador. Asegúrate de configurar PlayerPath.");
 		}
+		
 	}
 
 	public override void _Process(double delta)

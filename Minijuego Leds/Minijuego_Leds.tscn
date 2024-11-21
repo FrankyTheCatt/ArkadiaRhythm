@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtqrsyjvohjko"]
+
+[ext_resource type="Script" path="res://Minijuego Leds/Scripts/Minijuego.cs" id="1_uvsky"]
+[ext_resource type="Script" path="res://UI/PlayerLife.cs" id="2_ennig"]
+[ext_resource type="PackedScene" uid="uid://bej6ietgrkay7" path="res://UI/Ui_Personaje.tscn" id="2_jl5k8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7rbq"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ji6ga"]
+bg_color = Color(0.114526, 0.6628, 0.810272, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="MinijuegoLeds" type="Node2D"]
+script = ExtResource("1_uvsky")
+
+[node name="UiPersonaje" parent="." instance=ExtResource("2_jl5k8")]
+
+[node name="Player2" type="Node2D" parent="UiPersonaje"]
+script = ExtResource("2_ennig")
+
+[node name="Timer" type="Timer" parent="UiPersonaje/Player2"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="UiPersonaje/Player2"]
+offset_left = -161.0
+offset_top = -8.0
+offset_right = 283.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i7rbq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ji6ga")
+value = 100.0
+
+[connection signal="timeout" from="UiPersonaje/Player2/Timer" to="UiPersonaje/Player2" method="_on_timer_timeout"]
+[connection signal="value_changed" from="UiPersonaje/Player2/ProgressBar" to="UiPersonaje/Player2" method="_on_progress_bar_value_changed"]
