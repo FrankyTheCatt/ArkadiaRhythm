@@ -16,7 +16,8 @@ public partial class Minijuego : Node
 		new LedEvent(2, 1.0, 1.0), // LED 2, se enciende a los 0.5s y dura 1.0s
 		new LedEvent(3, 2.0, 1.0), // LED 3, se enciende a los 1.0s y dura 1.5s
 		new LedEvent(4, 3.0, 1.0),  // LED 4, se enciende a los 1.5s y dura 1.0s
-		new LedEvent(3, 5.0, 2.0)
+		new LedEvent(3, 5.0, 2.0),
+		new LedEvent(4, 5.0, 5.0)
 		
 		
 	};
