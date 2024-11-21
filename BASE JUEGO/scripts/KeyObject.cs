@@ -39,6 +39,7 @@ public partial class KeyObject : Area2D
 			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
 			{
 				GD.Print("debug => ¡Qué bieeeeeeen!");
+				level.GainLife(1);
 				QueueFree();  // Elimina la nota si la tecla correcta fue presionada
 			}
 		}
@@ -64,6 +65,7 @@ public partial class KeyObject : Area2D
 		if (estaDentro && sensorNumber == this.sensorNumber)
 		{
 			GD.Print("Sensor " + sensorNumber + " activado correctamente en el área. Eliminando nota.");
+			level.GainLife(1);
 			QueueFree();  // elimina la nota si el sensor correcto se activa y la nota está en el área
 		}
 	}

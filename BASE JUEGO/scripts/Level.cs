@@ -11,7 +11,12 @@ public partial class Level : Node2D
 	protected PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
 	protected SerialReader serialReader;
 	private int playerHealth = 5; // Vida del jugador, puede ser modificada según sea necesario.
+	private int maxLife = 5; // Define el máximo de vida del jugador
 	private PackedScene damageNoteScene;
+	private Timer bossLifeTimer;
+	private int bossLifeIndex = 1;
+	private int maxBossLife = 5; // Número máximo de vidas del boss
+	private float songDuration = 185f; // Duración de la canción en segundos
 
 	public void _Process()
 	{
@@ -202,30 +207,33 @@ public partial class Level : Node2D
 		SetupTimersForLane(azul_times_list, 1);     // Carril azul
 		SetupTimersForLane(verde_times_list, 2);    // Carril verde
 		SetupTimersForLane(amarillo_times_list, 3); // Carril amarillo
-		RotateAllHearts();
+		RotateHeart(playerHealth);
 
+		    // Inicializa el Timer
+    bossLifeTimer = new Timer();
+    AddChild(bossLifeTimer);
+    bossLifeTimer.OneShot = false;
+    bossLifeTimer.Timeout += OnBossLifeTimerTimeout;
 
+    // Inicia el proceso de eliminación de vidas del boss
+    StartBossLifeCountdown();
 
 	}
 	//FUNCIONES
 
 	// Método para girar todos los corazones
-	private void RotateAllHearts()
+	private void RotateHeart(int heartIndex)
 	{
-		for (int i = 1; i <= 5; i++)
+		var animationPlayerPath = $"PlayerLife{heartIndex}/AnimationPlayer{heartIndex}";
+		var animationPlayer = GetNodeOrNull<AnimationPlayer>(animationPlayerPath);
+		if (animationPlayer != null)
 		{
-			var animationPlayerPath = $"PlayerLife{i}/AnimationPlayer{i}";
-			var animationPlayer = GetNodeOrNull<AnimationPlayer>(animationPlayerPath);
-
-			if (animationPlayer != null)
-			{
-				animationPlayer.Play("girarPlayer");
-				GD.Print($"Girando corazón {i}");
-			}
-			else
-			{
-				GD.PrintErr($"No se encontró el nodo: {animationPlayerPath}");
-			}
+			animationPlayer.Play("girarPlayer"); // Reemplaza "girarPlayer" con el nombre de tu animación de rotación
+			GD.Print($"Girando corazón {heartIndex}");
+		}
+		else
+		{
+			GD.PrintErr($"No se encontró el nodo: {animationPlayerPath}");
 		}
 	}
 
@@ -282,25 +290,40 @@ public partial class Level : Node2D
 		}
 	}
 
+	public void GainLife(int lifeAmount)
+	{
+		// Incrementar la vida del jugador
+		playerHealth += lifeAmount;
+		if (playerHealth > maxLife)
+		{
+			playerHealth = maxLife; // Asegurarse de que la vida no exceda el máximo
+		}
+		GD.Print("Vida ganada: " + lifeAmount + ". Vida restante: " + playerHealth);
+
+		// Actualizar la vida del jugador
+		UpdatePlayerLife(playerHealth);
+	}
+
 	public void UpdatePlayerLife(int newLife)
 	{
-		for (int i = 1; i <= 5; i++)
+		for (int i = 1; i <= maxLife; i++)
 		{
 			var spritePath = $"PlayerLife{i}";
 			var sprite = GetNodeOrNull<Sprite2D>(spritePath);
 			if (sprite != null)
 			{
+				bool wasVisible = sprite.Visible;
 				sprite.Visible = i <= newLife;
 
 				var animationPlayerPath = $"{spritePath}/AnimationPlayer{i}";
 				var animationPlayer = GetNodeOrNull<AnimationPlayer>(animationPlayerPath);
 				if (animationPlayer != null)
 				{
-					if (sprite.Visible)
+					if (sprite.Visible && !wasVisible)
 					{
-						animationPlayer.Play("default"); // Reemplaza "default" con el nombre de tu animación
+						RotateHeart(i); // Llama a RotateHeart para rotar el corazón cuando se vuelve visible
 					}
-					else
+					else if (!sprite.Visible)
 					{
 						animationPlayer.Stop();
 					}
@@ -360,4 +383,38 @@ public partial class Level : Node2D
 		}
 		return data;
 	}
+
+	//BOSS FUNCION HEALTH
+public void StartBossLifeCountdown()
+{
+    if (bossLifeTimer == null)
+    {
+        GD.PrintErr("Timer no está inicializado.");
+        return;
+    }
+
+    float interval = songDuration / maxBossLife; // Dividir la duración de la canción entre el número de vidas del boss
+
+    bossLifeTimer.WaitTime = interval;
+    bossLifeTimer.Start();
+}
+
+private void OnBossLifeTimerTimeout()
+{
+    if (bossLifeIndex <= maxBossLife)
+    {
+        var bossLifePath = $"BossLife{bossLifeIndex}";
+        var bossLifeNode = GetNodeOrNull<CanvasItem>(bossLifePath);
+        if (bossLifeNode != null)
+        {
+            bossLifeNode.Visible = false;
+            GD.Print($"BossLife{bossLifeIndex} se ha hecho invisible.");
+        }
+        bossLifeIndex++;
+    }
+    else
+    {
+        bossLifeTimer.Stop();
+    }
+}
 }
