@@ -540,7 +540,7 @@ libraries = {
 autoplay = "girarBoss"
 
 [node name="BossLife4" type="Sprite2D" parent="."]
-position = Vector2(730.757, 44.5299)
+position = Vector2(789, 44)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
@@ -553,7 +553,7 @@ libraries = {
 autoplay = "girarBoss"
 
 [node name="BossLife5" type="Sprite2D" parent="."]
-position = Vector2(788, 44)
+position = Vector2(732, 44)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
