@@ -501,7 +501,7 @@ libraries = {
 autoplay = "girarPlayer"
 
 [node name="BossLife1" type="Sprite2D" parent="."]
-position = Vector2(784.757, 44.5299)
+position = Vector2(959, 44)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
@@ -514,7 +514,7 @@ libraries = {
 autoplay = "girarBoss"
 
 [node name="BossLife2" type="Sprite2D" parent="."]
-position = Vector2(956.757, 44.5299)
+position = Vector2(903, 44)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
@@ -527,7 +527,7 @@ libraries = {
 autoplay = "girarBoss"
 
 [node name="BossLife3" type="Sprite2D" parent="."]
-position = Vector2(899.757, 44.5299)
+position = Vector2(845, 44)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
@@ -540,7 +540,7 @@ libraries = {
 autoplay = "girarBoss"
 
 [node name="BossLife4" type="Sprite2D" parent="."]
-position = Vector2(728.757, 44.5299)
+position = Vector2(730.757, 44.5299)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
@@ -553,7 +553,7 @@ libraries = {
 autoplay = "girarBoss"
 
 [node name="BossLife5" type="Sprite2D" parent="."]
-position = Vector2(842.757, 44.5299)
+position = Vector2(788, 44)
 scale = Vector2(0.558395, 0.573397)
 texture = ExtResource("13_j4b6q")
 hframes = 10
