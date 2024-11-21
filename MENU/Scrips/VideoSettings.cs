@@ -30,4 +30,8 @@ public partial class VideoSettings : TabBar
 		 //DisplayServer.WindowSetVsyncMode(index);
 	}
 	
+	public void _on_back_button_up() {
+		GetTree().ChangeSceneToFile("res://MENU/menu_inicio.tscn");
+	}
+	
 }

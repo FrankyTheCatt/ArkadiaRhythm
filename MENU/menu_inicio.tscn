@@ -137,3 +137,5 @@ autoplay = "default"
 frame_progress = 0.00459842
 
 [connection signal="button_up" from="Botones/play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="Botones/options" to="." method="_on_options_button_up"]
+[connection signal="button_up" from="Botones/quit" to="." method="_on_quit_button_up"]

@@ -209,14 +209,14 @@ public partial class Level : Node2D
 		SetupTimersForLane(amarillo_times_list, 3); // Carril amarillo
 		RotateHeart(playerHealth);
 
-		    // Inicializa el Timer
-    bossLifeTimer = new Timer();
-    AddChild(bossLifeTimer);
-    bossLifeTimer.OneShot = false;
-    bossLifeTimer.Timeout += OnBossLifeTimerTimeout;
+			// Inicializa el Timer
+	bossLifeTimer = new Timer();
+	AddChild(bossLifeTimer);
+	bossLifeTimer.OneShot = false;
+	bossLifeTimer.Timeout += OnBossLifeTimerTimeout;
 
-    // Inicia el proceso de eliminación de vidas del boss
-    StartBossLifeCountdown();
+	// Inicia el proceso de eliminación de vidas del boss
+	StartBossLifeCountdown();
 
 	}
 	//FUNCIONES
@@ -306,6 +306,10 @@ public partial class Level : Node2D
 
 	public void UpdatePlayerLife(int newLife)
 	{
+		if(newLife <= 0) {
+			Die();
+		}
+		
 		for (int i = 1; i <= maxLife; i++)
 		{
 			var spritePath = $"PlayerLife{i}";
@@ -331,6 +335,11 @@ public partial class Level : Node2D
 			}
 		}
 	}
+	
+	private void Die() {
+		GetTree().ChangeSceneToFile("res://MENU/DefeatScene.tscn");
+	}
+	
 	private void SetupTimersForLane(List<float> timesList, int key)
 	{
 		foreach (var time in timesList)
@@ -387,34 +396,37 @@ public partial class Level : Node2D
 	//BOSS FUNCION HEALTH
 public void StartBossLifeCountdown()
 {
-    if (bossLifeTimer == null)
-    {
-        GD.PrintErr("Timer no está inicializado.");
-        return;
-    }
+	if (bossLifeTimer == null)
+	{
+		GD.PrintErr("Timer no está inicializado.");
+		return;
+	}
 
-    float interval = songDuration / maxBossLife; // Dividir la duración de la canción entre el número de vidas del boss
+	float interval = songDuration / maxBossLife; // Dividir la duración de la canción entre el número de vidas del boss
 
-    bossLifeTimer.WaitTime = interval;
-    bossLifeTimer.Start();
+	bossLifeTimer.WaitTime = interval;
+	bossLifeTimer.Start();
 }
 
 private void OnBossLifeTimerTimeout()
 {
-    if (bossLifeIndex <= maxBossLife)
-    {
-        var bossLifePath = $"BossLife{bossLifeIndex}";
-        var bossLifeNode = GetNodeOrNull<CanvasItem>(bossLifePath);
-        if (bossLifeNode != null)
-        {
-            bossLifeNode.Visible = false;
-            GD.Print($"BossLife{bossLifeIndex} se ha hecho invisible.");
-        }
-        bossLifeIndex++;
-    }
-    else
-    {
-        bossLifeTimer.Stop();
-    }
+	if (bossLifeIndex <= maxBossLife)
+	{
+		var bossLifePath = $"BossLife{bossLifeIndex}";
+		var bossLifeNode = GetNodeOrNull<CanvasItem>(bossLifePath);
+		if (bossLifeNode != null)
+		{
+			bossLifeNode.Visible = false;
+			GD.Print($"BossLife{bossLifeIndex} se ha hecho invisible.");
+		}
+		bossLifeIndex++;
+		if(bossLifeIndex == maxBossLife) {
+			bossLifeTimer.Stop();
+			GetTree().ChangeSceneToFile("res://MENU/VictoryScene.tscn");
+		}
+	} else {
+		// pone aca lo que quieras uwu oh no FATAL ERRROR
+		GD.PrintErr("FATAL ERROR, ERROR MATEMÁTICO");
+	}
 }
 }

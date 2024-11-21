@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgjkve85xabv8"]
+
+[ext_resource type="Texture2D" uid="uid://cn0f7vdixrevy" path="res://MENU/Assets/file-G7ujAjiXQUTIbvJ7LFjAkRJm.webp" id="1_3joyi"]
+[ext_resource type="Script" path="res://MENU/Scrips/VictoryScene.cs" id="1_11flh"]
+
+[node name="VictoryScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_11flh")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+offset_right = 1792.0
+offset_bottom = 1024.0
+scale = Vector2(0.642368, 0.632732)
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_3joyi")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.684
+anchor_right = 0.5
+anchor_bottom = 0.684
+offset_left = -98.0
+offset_top = -148.232
+offset_right = 98.0
+offset_bottom = -90.232
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Return" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "RETURN TO MAIN MENU"
+
+[connection signal="button_up" from="VBoxContainer/Return" to="." method="_on_return_button_up"]
