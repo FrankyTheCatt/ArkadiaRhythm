@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://cwhdkt5ulviq6"]
 
-[ext_resource type="Script" path="res://MENU/menu_inicio.gd" id="1_77pig"]
+[ext_resource type="Script" path="res://MENU/Scrips/MainMenu.cs" id="1_dxy1x"]
 [ext_resource type="Texture2D" uid="uid://clxme0daqwpex" path="res://MENU/Ultimate Pixel 3.2/crt screens/button crt/button 1 crt sprite.png" id="3_brhqo"]
 [ext_resource type="VideoStream" path="res://MENU/Assets/menu.ogv" id="4_fd17u"]
 [ext_resource type="Theme" uid="uid://chhne235x1p5f" path="res://MENU/Botones.tres" id="7_hqh6p"]
@@ -47,21 +47,16 @@ animations = [{
 [node name="Menu Inicio" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_top = 223.0
 offset_right = 426.0
-offset_bottom = 223.0
-grow_horizontal = 2
-grow_vertical = 2
+scale = Vector2(0.6, 0.6)
 theme = SubResource("Theme_cft6w")
-script = ExtResource("1_77pig")
+script = ExtResource("1_dxy1x")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 1
-anchors_preset = -1
-offset_top = -222.0
 offset_right = 1920.0
-offset_bottom = 866.0
+offset_bottom = 1088.0
 stream = ExtResource("4_fd17u")
 autoplay = true
 loop = true
@@ -77,15 +72,15 @@ color = Color(0, 0, 0, 0.607843)
 custom_minimum_size = Vector2(200, 617)
 layout_mode = 0
 offset_left = 1197.0
-offset_top = -8.0
+offset_top = 175.0
 offset_right = 1735.0
-offset_bottom = 609.0
+offset_bottom = 792.0
 pivot_offset = Vector2(-1, 35)
 theme = ExtResource("7_hqh6p")
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Button" type="Button" parent="Botones"]
+[node name="play" type="Button" parent="Botones"]
 clip_contents = true
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
@@ -94,7 +89,7 @@ theme = ExtResource("7_hqh6p")
 text = "JUGAR"
 clip_text = true
 
-[node name="Animation" type="AnimatedSprite2D" parent="Botones/Button"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/play"]
 process_mode = 3
 modulate = Color(0.497474, 0.497474, 0.497474, 1)
 show_behind_parent = true
@@ -141,6 +136,4 @@ sprite_frames = SubResource("SpriteFrames_r108f")
 autoplay = "default"
 frame_progress = 0.00459842
 
-[connection signal="pressed" from="Botones/Button" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Botones/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="Botones/quit" to="." method="_on_quit_pressed"]
+[connection signal="button_up" from="Botones/play" to="." method="_on_play_button_up"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://ciwmo8oon64p2"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
-[ext_resource type="Texture2D" uid="uid://ipvngivo4ipp" path="res://BASE JUEGO/assets/Daco_1717412.png" id="4_b301r"]
+[ext_resource type="Texture2D" uid="uid://qpu6irtvwvgg" path="res://BASE JUEGO/assets/Pixel_editado.png" id="3_5tx2a"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Verde.cs" id="4_y5beh"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_rg5wb"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Amarillo.cs" id="6_sujv6"]
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [10, 0]
+"values": [2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_21bcg"]
@@ -40,7 +40,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_ic2dj"]
@@ -56,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [2]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nq1qi"]
@@ -76,10 +76,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.233333),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [13, 3]
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_o0bih"]
@@ -94,7 +94,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_m780y"]
@@ -110,7 +110,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fmmy4"]
@@ -130,10 +130,10 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.233333),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [12, 2]
+"values": [8, 9]
 }
 
 [sub_resource type="Animation" id="Animation_ajsc6"]
@@ -148,7 +148,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [8]
 }
 
 [sub_resource type="Animation" id="Animation_hshih"]
@@ -164,7 +164,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [9]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6kk5l"]
@@ -187,7 +187,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [11, 1]
+"values": [12, 13]
 }
 
 [sub_resource type="Animation" id="Animation_d4gw1"]
@@ -202,7 +202,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_gecig"]
@@ -218,7 +218,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [13]
 }
 
 [sub_resource type="Animation" id="Animation_vo0e1"]
@@ -248,10 +248,10 @@ shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Verde" type="Sprite2D" parent="Objects/ColorObject"]
 visibility_layer = 2
-texture = ExtResource("4_b301r")
-hframes = 5
-vframes = 9
-frame = 5
+texture = ExtResource("3_5tx2a")
+hframes = 4
+vframes = 4
+frame = 3
 script = ExtResource("4_y5beh")
 
 [node name="animVerde" type="AnimationPlayer" parent="Objects/ColorObject/Verde"]
@@ -268,10 +268,9 @@ shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Azul" type="Sprite2D" parent="Objects/ColorObject2"]
 visibility_layer = 2
-texture = ExtResource("4_b301r")
-hframes = 5
-vframes = 9
-frame = 8
+texture = ExtResource("3_5tx2a")
+hframes = 4
+vframes = 4
 script = ExtResource("5_rg5wb")
 
 [node name="animAzul" type="AnimationPlayer" parent="Objects/ColorObject2/Azul"]
@@ -288,10 +287,10 @@ shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Amarillo" type="Sprite2D" parent="Objects/ColorObject3"]
 visibility_layer = 2
-texture = ExtResource("4_b301r")
-hframes = 5
-vframes = 9
-frame = 7
+texture = ExtResource("3_5tx2a")
+hframes = 4
+vframes = 4
+frame = 8
 script = ExtResource("6_sujv6")
 
 [node name="animAmarillo" type="AnimationPlayer" parent="Objects/ColorObject3/Amarillo"]
@@ -308,10 +307,10 @@ shape = SubResource("CircleShape2D_u8owt")
 
 [node name="Rojo" type="Sprite2D" parent="Objects/ColorObject4"]
 visibility_layer = 2
-texture = ExtResource("4_b301r")
-hframes = 5
-vframes = 9
-frame = 6
+texture = ExtResource("3_5tx2a")
+hframes = 4
+vframes = 4
+frame = 12
 script = ExtResource("7_1v7vv")
 
 [node name="animRojo" type="AnimationPlayer" parent="Objects/ColorObject4/Rojo"]

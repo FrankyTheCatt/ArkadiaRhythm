@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://pca1xoomqkov"]
 
-[ext_resource type="Script" path="res://MENU/opciones.gd" id="1_ka7uq"]
+[ext_resource type="Script" path="res://MENU/Scrips/Options_Menu.cs" id="1_u0ch8"]
 [ext_resource type="VideoStream" path="res://MENU/Assets/menu.ogv" id="2_grjje"]
 [ext_resource type="Theme" uid="uid://chhne235x1p5f" path="res://MENU/Botones.tres" id="3_t0dnt"]
 [ext_resource type="Texture2D" uid="uid://clxme0daqwpex" path="res://MENU/Ultimate Pixel 3.2/crt screens/button crt/button 1 crt sprite.png" id="4_47sp7"]
@@ -43,12 +43,9 @@ animations = [{
 
 [node name="Options" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_ka7uq")
+anchors_preset = 0
+scale = Vector2(0.6, 0.6)
+script = ExtResource("1_u0ch8")
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
@@ -80,7 +77,7 @@ theme = ExtResource("3_t0dnt")
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="Button" type="Button" parent="Botones"]
+[node name="Volumen" type="Button" parent="Botones"]
 clip_contents = true
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
@@ -89,7 +86,7 @@ theme = ExtResource("3_t0dnt")
 text = "Volume"
 clip_text = true
 
-[node name="Animation" type="AnimatedSprite2D" parent="Botones/Button"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/Volumen"]
 process_mode = 3
 modulate = Color(0.497474, 0.497474, 0.497474, 1)
 show_behind_parent = true
@@ -99,14 +96,14 @@ scale = Vector2(6.329, 10.875)
 sprite_frames = SubResource("SpriteFrames_5wgnj")
 autoplay = "default"
 
-[node name="options" type="Button" parent="Botones"]
+[node name="Resolution" type="Button" parent="Botones"]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("3_t0dnt")
 text = "Resolucion"
 
-[node name="Animation" type="AnimatedSprite2D" parent="Botones/options"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/Resolution"]
 process_mode = 3
 modulate = Color(0.497474, 0.497474, 0.497474, 1)
 show_behind_parent = true
@@ -116,14 +113,14 @@ scale = Vector2(6.329, 10.875)
 sprite_frames = SubResource("SpriteFrames_5wgnj")
 autoplay = "default"
 
-[node name="quit" type="Button" parent="Botones"]
+[node name="Back" type="Button" parent="Botones"]
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("3_t0dnt")
 text = "Back"
 
-[node name="Animation" type="AnimatedSprite2D" parent="Botones/quit"]
+[node name="Animation" type="AnimatedSprite2D" parent="Botones/Back"]
 process_mode = 3
 modulate = Color(0.497474, 0.497474, 0.497474, 1)
 show_behind_parent = true
@@ -133,4 +130,4 @@ scale = Vector2(6.329, 10.875)
 sprite_frames = SubResource("SpriteFrames_5wgnj")
 autoplay = "default"
 
-[connection signal="pressed" from="Botones/quit" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="Botones/Resolution" to="." method="_on_resolution_toggled"]
