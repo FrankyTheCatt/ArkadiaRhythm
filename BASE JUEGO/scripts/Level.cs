@@ -10,7 +10,7 @@ public partial class Level : Node2D
 	protected List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
 	protected PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
 	protected SerialReader serialReader;
-	private float playerHealth = 100f; // Vida del jugador, puede ser modificada según sea necesario.
+	private int playerHealth = 5; // Vida del jugador, puede ser modificada según sea necesario.
 	private PackedScene damageNoteScene;
 
 	public void _Process()
@@ -26,7 +26,7 @@ public partial class Level : Node2D
 		// cargaa la escena KeyObject para instanciar nuevas notas y que no se bugeee!!!!
 		keyObjectScene = (PackedScene)ResourceLoader.Load("res://BASE JUEGO/KeyObject.tscn");
 
-		 // cargar la escena DamageNote para instanciar nuevas notas de daño
+		// cargar la escena DamageNote para instanciar nuevas notas de daño
 		damageNoteScene = (PackedScene)ResourceLoader.Load("res://Niveles/Nivel1/DamageNote.tscn");
 		if (damageNoteScene == null)
 		{
@@ -202,13 +202,33 @@ public partial class Level : Node2D
 		SetupTimersForLane(azul_times_list, 1);     // Carril azul
 		SetupTimersForLane(verde_times_list, 2);    // Carril verde
 		SetupTimersForLane(amarillo_times_list, 3); // Carril amarillo
-		
-		GetNode<AnimationPlayer>("PlayerLife/AnimationPlayer").Play("girarPlayer");
-		GetNode<AnimationPlayer>("PlayerLife2/AnimationPlayer").Play("girarPlayer");
-		
+		RotateAllHearts();
+
+
 
 	}
-//FUNCIONES
+	//FUNCIONES
+
+	// Método para girar todos los corazones
+	private void RotateAllHearts()
+	{
+		for (int i = 1; i <= 5; i++)
+		{
+			var animationPlayerPath = $"PlayerLife{i}/AnimationPlayer{i}";
+			var animationPlayer = GetNodeOrNull<AnimationPlayer>(animationPlayerPath);
+
+			if (animationPlayer != null)
+			{
+				animationPlayer.Play("girarPlayer");
+				GD.Print($"Girando corazón {i}");
+			}
+			else
+			{
+				GD.PrintErr($"No se encontró el nodo: {animationPlayerPath}");
+			}
+		}
+	}
+
 	private void SetupDamageNoteTimersForLane(List<float> timesList, int key)
 	{
 		foreach (var time in timesList)
@@ -239,18 +259,22 @@ public partial class Level : Node2D
 			newDamageNote.Spawn(key, pos);  // Posición en el carril especificado
 			newDamageNote.SetSerialReader(serialReader);  // Asigna el SerialReader al nuevo objeto
 			newDamageNote.Visible = true;  // Asegura que la nota sea visible
-			//GD.Print("Nota de daño generada en el carril: " + key);
+										   //GD.Print("Nota de daño generada en el carril: " + key);
 		}
 		else
 		{
 			GD.PrintErr("Error: No se pudo cargar la escena de DamageNote.");
 		}
 	}
-	public void TakeDamage(float damageAmount)
+	public void TakeDamage(int damageAmount)
 	{
 		// Reducir la vida del jugador
 		playerHealth -= damageAmount;
 		GD.Print("Daño recibido: " + damageAmount + ". Vida restante: " + playerHealth);
+
+		// Actualizar la vida del jugador
+		UpdatePlayerLife(playerHealth);
+
 		if (playerHealth <= 0)
 		{
 			GD.PrintErr("¡Game Over! Vida agotada.");
@@ -258,6 +282,32 @@ public partial class Level : Node2D
 		}
 	}
 
+	public void UpdatePlayerLife(int newLife)
+	{
+		for (int i = 1; i <= 5; i++)
+		{
+			var spritePath = $"PlayerLife{i}";
+			var sprite = GetNodeOrNull<Sprite2D>(spritePath);
+			if (sprite != null)
+			{
+				sprite.Visible = i <= newLife;
+
+				var animationPlayerPath = $"{spritePath}/AnimationPlayer{i}";
+				var animationPlayer = GetNodeOrNull<AnimationPlayer>(animationPlayerPath);
+				if (animationPlayer != null)
+				{
+					if (sprite.Visible)
+					{
+						animationPlayer.Play("default"); // Reemplaza "default" con el nombre de tu animación
+					}
+					else
+					{
+						animationPlayer.Stop();
+					}
+				}
+			}
+		}
+	}
 	private void SetupTimersForLane(List<float> timesList, int key)
 	{
 		foreach (var time in timesList)
@@ -285,7 +335,7 @@ public partial class Level : Node2D
 			newKeyObject.Spawn(key, pos);  // Posición en el carril especificado
 			newKeyObject.SetSerialReader(serialReader);  // Asigna el SerialReader al nuevo objeto
 			newKeyObject.Visible = true;  // Asegura que la nota sea visible
-			//GD.Print("Nota generada en el carril: " + key);
+										  //GD.Print("Nota generada en el carril: " + key);
 		}
 		else
 		{

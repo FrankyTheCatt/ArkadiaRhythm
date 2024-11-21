@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ciwmo8oon64p2"]
+[gd_scene load_steps=36 format=3 uid="uid://ciwmo8oon64p2"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
 [ext_resource type="Texture2D" uid="uid://qpu6irtvwvgg" path="res://BASE JUEGO/assets/Pixel_editado.png" id="3_5tx2a"]
@@ -11,6 +11,7 @@
 [ext_resource type="VideoStream" path="res://BASE JUEGO/assets/X2Twitter.com_FeOF-kbacAA4Ucx_gif.ogv" id="9_g3fku"]
 [ext_resource type="VideoStream" path="res://BASE JUEGO/assets/calaveraFuego.ogv" id="9_sc81j"]
 [ext_resource type="Texture2D" uid="uid://bqnfaa1g14ww8" path="res://BASE JUEGO/assets/color.png" id="10_kux47"]
+[ext_resource type="Texture2D" uid="uid://byw8qwa8xo5x8" path="res://BASE JUEGO/assets/calaveraSpriteFramesHeart.png" id="13_j4b6q"]
 [ext_resource type="Texture2D" uid="uid://35b6x4y0rl3i" path="res://BASE JUEGO/assets/calaveraPlayer.png" id="13_n2q3g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u8owt"]
@@ -236,7 +237,7 @@ _data = {
 "new_animation": SubResource("Animation_vo0e1")
 }
 
-[sub_resource type="Animation" id="Animation_p5eho"]
+[sub_resource type="Animation" id="Animation_ptjoj"]
 resource_name = "girarPlayer"
 length = 0.67
 loop_mode = 1
@@ -253,8 +254,15 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="Animation" id="Animation_738d2"]
-length = 0.001
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_71s4e"]
+_data = {
+"girarPlayer": SubResource("Animation_ptjoj")
+}
+
+[sub_resource type="Animation" id="Animation_v1hmi"]
+resource_name = "girarBoss"
+length = 0.6667
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -262,16 +270,15 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.166667, 0.233333, 0.3, 0.366667, 0.433333, 0.5, 0.566667, 0.633333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_71s4e"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnmkx"]
 _data = {
-"RESET": SubResource("Animation_738d2"),
-"girarPlayer": SubResource("Animation_p5eho")
+"girarBoss": SubResource("Animation_v1hmi")
 }
 
 [node name="Level" type="Node2D"]
@@ -433,24 +440,127 @@ stream = ExtResource("8_exyo4")
 volume_db = -30.969
 
 [node name="PlayerLife2" type="Sprite2D" parent="."]
-position = Vector2(643, 606)
+position = Vector2(740.728, 602.748)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_n2q3g")
+hframes = 10
+frame = 9
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="PlayerLife2"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="PlayerLife3" type="Sprite2D" parent="."]
+position = Vector2(854.728, 602.748)
 scale = Vector2(0.844946, 0.874951)
 texture = ExtResource("13_n2q3g")
 hframes = 10
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerLife2"]
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="PlayerLife3"]
 libraries = {
 "": SubResource("AnimationLibrary_71s4e")
 }
+autoplay = "girarPlayer"
 
-[node name="PlayerLife" type="Sprite2D" parent="."]
-position = Vector2(705, 606)
+[node name="PlayerLife4" type="Sprite2D" parent="."]
+position = Vector2(911.728, 602.748)
 scale = Vector2(0.844946, 0.874951)
 texture = ExtResource("13_n2q3g")
 hframes = 10
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerLife"]
-root_node = NodePath("../../PlayerLife2")
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="PlayerLife4"]
 libraries = {
 "": SubResource("AnimationLibrary_71s4e")
 }
+autoplay = "girarPlayer"
+
+[node name="PlayerLife5" type="Sprite2D" parent="."]
+position = Vector2(969.728, 602.748)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_n2q3g")
+hframes = 10
+
+[node name="AnimationPlayer5" type="AnimationPlayer" parent="PlayerLife5"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="PlayerLife1" type="Sprite2D" parent="."]
+position = Vector2(797.728, 602.748)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_n2q3g")
+hframes = 10
+
+[node name="AnimationPlayer1" type="AnimationPlayer" parent="PlayerLife1"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="BossLife1" type="Sprite2D" parent="."]
+position = Vector2(784.757, 44.5299)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("13_j4b6q")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss1" type="AnimationPlayer" parent="BossLife1"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife2" type="Sprite2D" parent="."]
+position = Vector2(956.757, 44.5299)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("13_j4b6q")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss2" type="AnimationPlayer" parent="BossLife2"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife3" type="Sprite2D" parent="."]
+position = Vector2(899.757, 44.5299)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("13_j4b6q")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss3" type="AnimationPlayer" parent="BossLife3"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife4" type="Sprite2D" parent="."]
+position = Vector2(728.757, 44.5299)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("13_j4b6q")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss4" type="AnimationPlayer" parent="BossLife4"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife5" type="Sprite2D" parent="."]
+position = Vector2(842.757, 44.5299)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("13_j4b6q")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss5" type="AnimationPlayer" parent="BossLife5"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"

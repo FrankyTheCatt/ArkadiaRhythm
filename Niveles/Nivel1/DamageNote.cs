@@ -35,8 +35,8 @@ public partial class DamageNote : Area2D
 			//GD.Print("debug => Tecla asignada:", keySelected);
 			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
 			{
-				GD.Print("debug => ¡HAZ APRETADO LA TECLA DE DAÑO!");
-				level.TakeDamage(10);  // Llama a TakeDamage en Level
+				GD.Print("debug => ¡HAS APRETADO LA TECLA DE DAÑO!");
+				level.TakeDamage(1);  // Llama a TakeDamage en Level
 				QueueFree();  // Elimina la nota si la tecla correcta fue presionada
 			}
 		}
@@ -58,6 +58,8 @@ public partial class DamageNote : Area2D
 		if (estaDentro && sensorNumber == this.sensorNumber)
 		{
 			GD.Print("Sensor " + sensorNumber + " activado correctamente en el área. Eliminando nota.");
+			GD.Print("debug => ¡HAS APRETADO LA TECLA DE DAÑO!");
+			level.TakeDamage(1);  // Llama a TakeDamage en Level
 			QueueFree();  // eliminai la nota si el sensor correcto se activa y la nota está en el área
 		}
 	}

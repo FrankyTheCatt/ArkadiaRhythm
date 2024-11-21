@@ -9,6 +9,7 @@ public partial class KeyObject : Area2D
 	private SerialReader serialReader;
 	private Key keySelected;
 	// método para asignar SerialReader desde Level
+	private Level level;
 	public void SetSerialReader(SerialReader sr)
 	{
 		serialReader = sr;
@@ -27,10 +28,13 @@ public partial class KeyObject : Area2D
 		}
 	}
 
-	// Hace que la nota caiga
-	public override void _Process(double delta){
+	private bool haQuitadoVida = false;
+
+	public override void _Process(double delta)
+	{
 		Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas	
-		if (estaDentro){
+		if (estaDentro)
+		{
 			//GD.Print("debug => Tecla asignada:", keySelected);
 			if (Input.IsKeyPressed(keySelected)) // Verifica si la tecla correcta fue presionada
 			{
@@ -38,11 +42,15 @@ public partial class KeyObject : Area2D
 				QueueFree();  // Elimina la nota si la tecla correcta fue presionada
 			}
 		}
-		if (Visible){  // solo procesar si el objeto está visible
-			if (Position.Y > 950)  // Cuando sale de la pantalla
+		if (Visible)
+		{  // solo procesar si el objeto está visible
+			if (Position.Y > 950 && !haQuitadoVida)  // Cuando sale de la pantalla y no ha quitado vida aún
 			{
+				GD.Print("debug => ¡NO HAS APRETADO LA TECLA!");
+				level.TakeDamage(1);  // Llama a TakeDamage en Level
+				haQuitadoVida = true;  // Asegura que solo quita vida una vez
+				QueueFree();  // Elimina la nota
 				GD.Print("Nota eliminada, fuera de la pantalla");
-				QueueFree();  // elimina la nota al salir de la pantalla
 			}
 		}
 	}
@@ -56,7 +64,7 @@ public partial class KeyObject : Area2D
 		if (estaDentro && sensorNumber == this.sensorNumber)
 		{
 			GD.Print("Sensor " + sensorNumber + " activado correctamente en el área. Eliminando nota.");
-			QueueFree();  // eliminai la nota si el sensor correcto se activa y la nota está en el área
+			QueueFree();  // elimina la nota si el sensor correcto se activa y la nota está en el área
 		}
 	}
 	public override void _Ready()
@@ -64,6 +72,8 @@ public partial class KeyObject : Area2D
 		// conectar las señales para las colisiones de área
 		Connect("area_entered", new Callable(this, nameof(_on_area_entered)));
 		Connect("area_exited", new Callable(this, nameof(_on_area_exited)));
+
+		level = GetParent<Level>();  // Asignar la instancia de Level
 	}
 
 	// inicializa la nota en un carril específico
@@ -94,7 +104,7 @@ public partial class KeyObject : Area2D
 				break;
 		}
 	}
-	
+
 	public void _on_area_entered(Area2D area)
 	{
 		estaDentro = true;
