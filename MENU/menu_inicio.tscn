@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwhdkt5ulviq6"]
+[gd_scene load_steps=15 format=3 uid="uid://cwhdkt5ulviq6"]
 
 [ext_resource type="Script" path="res://MENU/Scrips/MainMenu.cs" id="1_dxy1x"]
 [ext_resource type="VideoStream" path="res://MENU/Assets/bc87e5124f8d2cfe810d403adc96ad01.ogv" id="2_d8yo4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://byanjmviiuo2" path="res://MENU/Assets/image (2) (1).png" id="7_5qjgv"]
 [ext_resource type="Theme" uid="uid://chhne235x1p5f" path="res://MENU/Botones.tres" id="7_hqh6p"]
 [ext_resource type="Texture2D" uid="uid://bdy70q2pvuur4" path="res://MENU/Assets/LogoUCN_acentuado.png" id="7_x1xjk"]
+[ext_resource type="Texture2D" uid="uid://dj3ypxa51mlcy" path="res://MENU/Assets/Ilustracion_sin_titulo.png" id="8_los2n"]
 
 [sub_resource type="Theme" id="Theme_cft6w"]
 resource_local_to_scene = true
@@ -81,15 +82,14 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0.718956, 0.745909, 1)
 custom_minimum_size = Vector2(200, 617)
 layout_mode = 0
-offset_left = 1200.0
-offset_top = 225.0
-offset_right = 1738.0
-offset_bottom = 842.0
+offset_left = 1298.33
+offset_top = 246.667
+offset_right = 1836.33
+offset_bottom = 863.667
 pivot_offset = Vector2(-1, 35)
 theme = ExtResource("7_hqh6p")
 theme_override_constants/separation = 50
 alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="play" type="Button" parent="Botones"]
 modulate = Color(0.98465, 0.758095, 0.879658, 1)
@@ -150,20 +150,25 @@ sprite_frames = SubResource("SpriteFrames_r108f")
 autoplay = "default"
 frame_progress = 0.00459842
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(616.667, 526.667)
-scale = Vector2(0.526667, 0.51462)
-texture = ExtResource("5_uqygd")
+[node name="LogoUcnAcentuado" type="Sprite2D" parent="."]
+position = Vector2(123.333, 955.442)
+scale = Vector2(0.0741194, 0.0695164)
+texture = ExtResource("7_x1xjk")
 
-[node name="Image(2)(1)" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-284.81, 877.671)
-scale = Vector2(1.16987, 1.04779)
+[node name="Image(2)(1)" type="Sprite2D" parent="."]
+position = Vector2(476.667, 951.667)
+scale = Vector2(0.616132, 0.539214)
 texture = ExtResource("7_5qjgv")
 
-[node name="LogoUcnAcentuado" type="Sprite2D" parent="Sprite2D"]
-position = Vector2(-955.696, 885.007)
-scale = Vector2(0.140733, 0.135083)
-texture = ExtResource("7_x1xjk")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(372.5, 540)
+scale = Vector2(0.2925, 0.302144)
+texture = ExtResource("5_uqygd")
+
+[node name="IlustracionSinTitulo" type="Sprite2D" parent="."]
+position = Vector2(651.667, 400)
+scale = Vector2(0.757917, 0.781189)
+texture = ExtResource("8_los2n")
 
 [connection signal="button_up" from="Botones/play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Botones/options" to="." method="_on_options_button_up"]
