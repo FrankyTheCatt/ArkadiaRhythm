@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ciwmo8oon64p2"]
+[gd_scene load_steps=37 format=3 uid="uid://ciwmo8oon64p2"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Level.cs" id="1_s1inn"]
 [ext_resource type="Texture2D" uid="uid://qpu6irtvwvgg" path="res://BASE JUEGO/assets/Pixel_editado.png" id="3_5tx2a"]
@@ -6,11 +6,12 @@
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_rg5wb"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Amarillo.cs" id="6_sujv6"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/Rojo.cs" id="7_1v7vv"]
+[ext_resource type="VideoStream" path="res://BASE JUEGO/assets/calaveraMoto.ogv" id="8_4cg6p"]
 [ext_resource type="AudioStream" uid="uid://chcnyb25qnb1n" path="res://BASE JUEGO/mapeaditos/musica/Numb.mp3" id="8_exyo4"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/SerialReader.cs" id="9_f2yjl"]
-[ext_resource type="VideoStream" path="res://BASE JUEGO/assets/X2Twitter.com_FeOF-kbacAA4Ucx_gif.ogv" id="9_g3fku"]
-[ext_resource type="VideoStream" path="res://BASE JUEGO/assets/calaveraFuego.ogv" id="9_sc81j"]
+[ext_resource type="VideoStream" path="res://BASE JUEGO/assets/fondoCalaveraa.ogv" id="9_n5ym0"]
 [ext_resource type="Texture2D" uid="uid://bqnfaa1g14ww8" path="res://BASE JUEGO/assets/color.png" id="10_kux47"]
+[ext_resource type="Texture2D" uid="uid://75ku8jsabbob" path="res://MENU/Assets/IMG_2499.png" id="11_4vcjy"]
 [ext_resource type="Texture2D" uid="uid://byw8qwa8xo5x8" path="res://BASE JUEGO/assets/calaveraSpriteFramesHeart.png" id="13_j4b6q"]
 [ext_resource type="Texture2D" uid="uid://35b6x4y0rl3i" path="res://BASE JUEGO/assets/calaveraPlayer.png" id="13_n2q3g"]
 
@@ -375,26 +376,20 @@ autoplay = "SoltarRojo"
 
 [node name="VideoStreamPlayer3" type="VideoStreamPlayer" parent="Objects"]
 texture_filter = 1
-offset_left = 541.0
-offset_top = 70.0
-offset_right = 1097.0
-offset_bottom = 601.0
-stream = ExtResource("9_sc81j")
+offset_left = 520.0
+offset_top = -7.0
+offset_right = 1220.0
+offset_bottom = 657.0
+stream = ExtResource("8_4cg6p")
 autoplay = true
 expand = true
 loop = true
 metadata/_edit_lock_ = true
 
-[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="Objects"]
-offset_left = 521.0
-offset_top = -6.0
-offset_right = 1199.0
-offset_bottom = 655.0
-stream = ExtResource("9_g3fku")
-autoplay = true
-expand = true
-loop = true
-metadata/_edit_lock_ = true
+[node name="Img2499" type="Sprite2D" parent="Objects/VideoStreamPlayer3"]
+position = Vector2(352, 333)
+scale = Vector2(0.426829, 0.40585)
+texture = ExtResource("11_4vcjy")
 
 [node name="Color" type="Sprite2D" parent="Objects"]
 show_behind_parent = true
@@ -435,12 +430,25 @@ scale = Vector2(1.68478, 8.36324)
 texture = ExtResource("10_kux47")
 metadata/_edit_lock_ = true
 
+[node name="VideoStreamPlayer4" type="VideoStreamPlayer" parent="Objects"]
+modulate = Color(1, 1, 1, 0.403922)
+self_modulate = Color(1, 1, 1, 0.223529)
+texture_filter = 1
+offset_left = -178.0
+offset_top = -4.0
+offset_right = 522.0
+offset_bottom = 660.0
+stream = ExtResource("9_n5ym0")
+autoplay = true
+expand = true
+loop = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_exyo4")
 volume_db = -30.969
 
 [node name="PlayerLife2" type="Sprite2D" parent="."]
-position = Vector2(740.728, 602.748)
+position = Vector2(797, 603)
 scale = Vector2(0.844946, 0.874951)
 texture = ExtResource("13_n2q3g")
 hframes = 10
@@ -489,7 +497,7 @@ libraries = {
 autoplay = "girarPlayer"
 
 [node name="PlayerLife1" type="Sprite2D" parent="."]
-position = Vector2(797.728, 602.748)
+position = Vector2(741, 603)
 scale = Vector2(0.844946, 0.874951)
 texture = ExtResource("13_n2q3g")
 hframes = 10

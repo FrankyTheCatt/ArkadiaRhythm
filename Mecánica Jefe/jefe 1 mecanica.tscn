@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://f5g3g53p2h6v"]
-
-[ext_resource type="Script" path="res://Mecánica Jefe/Jefe1Script.cs" id="1_dp2ub"]
-
-[node name="Jefe1Mecanica" type="Node2D"]
-
-[node name="Jefe1" type="Node2D" parent="."]
-script = ExtResource("1_dp2ub")

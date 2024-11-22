@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cwhdkt5ulviq6"]
+[gd_scene load_steps=14 format=3 uid="uid://cwhdkt5ulviq6"]
 
 [ext_resource type="Script" path="res://MENU/Scrips/MainMenu.cs" id="1_dxy1x"]
+[ext_resource type="VideoStream" path="res://MENU/Assets/bc87e5124f8d2cfe810d403adc96ad01.ogv" id="2_d8yo4"]
 [ext_resource type="Texture2D" uid="uid://clxme0daqwpex" path="res://MENU/Ultimate Pixel 3.2/crt screens/button crt/button 1 crt sprite.png" id="3_brhqo"]
-[ext_resource type="VideoStream" path="res://MENU/Assets/menu.ogv" id="4_fd17u"]
+[ext_resource type="Texture2D" uid="uid://d083np1lsffg" path="res://MENU/Assets/TITULO.png" id="5_uqygd"]
+[ext_resource type="Texture2D" uid="uid://byanjmviiuo2" path="res://MENU/Assets/image (2) (1).png" id="7_5qjgv"]
 [ext_resource type="Theme" uid="uid://chhne235x1p5f" path="res://MENU/Botones.tres" id="7_hqh6p"]
+[ext_resource type="Texture2D" uid="uid://bdy70q2pvuur4" path="res://MENU/Assets/LogoUCN_acentuado.png" id="7_x1xjk"]
 
 [sub_resource type="Theme" id="Theme_cft6w"]
 resource_local_to_scene = true
@@ -55,32 +58,41 @@ script = ExtResource("1_dxy1x")
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 1
-offset_right = 1920.0
-offset_bottom = 1088.0
-stream = ExtResource("4_fd17u")
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 1963.0
+offset_bottom = 1116.0
+stream = ExtResource("2_d8yo4")
 autoplay = true
+expand = true
 loop = true
+metadata/_edit_lock_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="VideoStreamPlayer"]
 layout_mode = 0
-offset_top = -10.0
-offset_right = 1918.0
-offset_bottom = 1082.0
+offset_left = 6.66666
+offset_top = -8.0
+offset_right = 1924.67
+offset_bottom = 1084.0
 color = Color(0, 0, 0, 0.607843)
+metadata/_edit_lock_ = true
 
 [node name="Botones" type="VBoxContainer" parent="."]
+modulate = Color(1, 0.718956, 0.745909, 1)
 custom_minimum_size = Vector2(200, 617)
 layout_mode = 0
-offset_left = 1197.0
-offset_top = 175.0
-offset_right = 1735.0
-offset_bottom = 792.0
+offset_left = 1200.0
+offset_top = 225.0
+offset_right = 1738.0
+offset_bottom = 842.0
 pivot_offset = Vector2(-1, 35)
 theme = ExtResource("7_hqh6p")
 theme_override_constants/separation = 50
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="play" type="Button" parent="Botones"]
+modulate = Color(0.98465, 0.758095, 0.879658, 1)
 clip_contents = true
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
@@ -91,7 +103,7 @@ clip_text = true
 
 [node name="Animation" type="AnimatedSprite2D" parent="Botones/play"]
 process_mode = 3
-modulate = Color(0.497474, 0.497474, 0.497474, 1)
+modulate = Color(0.98465, 0.758095, 0.879658, 1)
 show_behind_parent = true
 z_as_relative = false
 position = Vector2(270, 77)
@@ -101,6 +113,7 @@ autoplay = "default"
 frame_progress = 0.0225905
 
 [node name="options" type="Button" parent="Botones"]
+modulate = Color(0.98465, 0.758095, 0.879658, 1)
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 focus_mode = 0
@@ -109,7 +122,7 @@ text = "OPCIONES"
 
 [node name="Animation" type="AnimatedSprite2D" parent="Botones/options"]
 process_mode = 3
-modulate = Color(0.497474, 0.497474, 0.497474, 1)
+modulate = Color(0.98465, 0.758095, 0.879658, 1)
 show_behind_parent = true
 z_as_relative = false
 position = Vector2(270, 68)
@@ -119,6 +132,7 @@ autoplay = "default"
 frame_progress = 0.328663
 
 [node name="quit" type="Button" parent="Botones"]
+modulate = Color(0.98465, 0.758095, 0.879658, 1)
 custom_minimum_size = Vector2(100, 150)
 layout_mode = 2
 focus_mode = 0
@@ -127,7 +141,7 @@ text = "SALIR"
 
 [node name="Animation" type="AnimatedSprite2D" parent="Botones/quit"]
 process_mode = 3
-modulate = Color(0.497474, 0.497474, 0.497474, 1)
+modulate = Color(0.98465, 0.758095, 0.879658, 1)
 show_behind_parent = true
 z_as_relative = false
 position = Vector2(272, 75)
@@ -135,6 +149,21 @@ scale = Vector2(6.329, 10.875)
 sprite_frames = SubResource("SpriteFrames_r108f")
 autoplay = "default"
 frame_progress = 0.00459842
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(616.667, 526.667)
+scale = Vector2(0.526667, 0.51462)
+texture = ExtResource("5_uqygd")
+
+[node name="Image(2)(1)" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-284.81, 877.671)
+scale = Vector2(1.16987, 1.04779)
+texture = ExtResource("7_5qjgv")
+
+[node name="LogoUcnAcentuado" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(-955.696, 885.007)
+scale = Vector2(0.140733, 0.135083)
+texture = ExtResource("7_x1xjk")
 
 [connection signal="button_up" from="Botones/play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Botones/options" to="." method="_on_options_button_up"]
