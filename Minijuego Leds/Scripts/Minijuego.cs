@@ -181,6 +181,12 @@ public partial class Minijuego : Node
 			
 		}
 		
+		//CAMBIO A ESCENA DE VICTORIA
+		if( _elapsedTime == 70.0)
+		{
+			
+		}
+		
 	}
 
 	public override void _ExitTree()
