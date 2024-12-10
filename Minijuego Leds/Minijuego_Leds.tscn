@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtqrsyjvohjko"]
+[gd_scene load_steps=8 format=3 uid="uid://dtqrsyjvohjko"]
 
 [ext_resource type="Script" path="res://Minijuego Leds/Scripts/Minijuego.cs" id="1_uvsky"]
 [ext_resource type="Script" path="res://UI/PlayerLife.cs" id="2_ennig"]
 [ext_resource type="PackedScene" uid="uid://bej6ietgrkay7" path="res://UI/Ui_Personaje.tscn" id="2_jl5k8"]
+[ext_resource type="AudioStream" uid="uid://dfnws7afc1n5j" path="res://Minijuego Leds/sonido/Metal Gear Solid Alert Sound Effect.mp3" id="4_j17q0"]
+[ext_resource type="AudioStream" uid="uid://v5m2kqdej2ln" path="res://Minijuego Leds/sonido/Eric Skiff - Underclocked  NO COPYRIGHT 8-bit Music  Background.mp3" id="5_abmlp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7rbq"]
 bg_color = Color(0, 0, 0, 1)
@@ -42,6 +44,17 @@ offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxFlat_i7rbq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ji6ga")
 value = 100.0
+
+[node name="sonido" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j17q0")
+volume_db = -8.705
+pitch_scale = 3.88
+
+[node name="EricSkiff-UnderclockedNoCopyright8-bitMusicBackground" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_abmlp")
+volume_db = -19.76
+pitch_scale = 1.44
+autoplay = true
 
 [connection signal="timeout" from="UiPersonaje/Player2/Timer" to="UiPersonaje/Player2" method="_on_timer_timeout"]
 [connection signal="value_changed" from="UiPersonaje/Player2/ProgressBar" to="UiPersonaje/Player2" method="_on_progress_bar_value_changed"]

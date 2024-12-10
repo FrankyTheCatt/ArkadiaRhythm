@@ -9,25 +9,88 @@ public partial class Minijuego : Node
 	[Export] public NodePath PlayerLife;
 	private PlayerLife _player;
 	private SerialPort _arduino;
+	private AudioStreamPlayer _audioPlayer;
 	private double _elapsedTime = 0.0; // Tiempo transcurrido en segundos
 	private List<LedEvent> _sequence = new List<LedEvent>
 	{
-		new LedEvent(1, 0.0, 1.0),
-		new LedEvent(2, 1.0, 1.0), // LED 2, se enciende a los 0.5s y dura 1.0s
-		new LedEvent(3, 2.0, 1.0), // LED 3, se enciende a los 1.0s y dura 1.5s
-		new LedEvent(4, 3.0, 1.0),  // LED 4, se enciende a los 1.5s y dura 1.0s
-		new LedEvent(3, 5.0, 2.0),
-		new LedEvent(4, 5.0, 5.0)
-		
+		new LedEvent(1, 10.0, 3.0),
+		new LedEvent(2, 11.0, 3.0), // LED 2, se enciende a los 11.0s y dura 3.0s
+		new LedEvent(3, 12.0, 2.0), // LED 3, se enciende a los 12.0s y dura 2.0s
+		new LedEvent(4, 13.0, 1.3), // LED 4, se enciende a los 13.0s y dura 1.3s
+		new LedEvent(3, 15.0, 1.3),
+		new LedEvent(4, 15.0, 1.3),
+		new LedEvent(1, 16.0, 1.3),
+		new LedEvent(2, 16.0, 1.3),
+		new LedEvent(3, 17.5, 1.3),
+		new LedEvent(2, 18.0, 1.3),
+		new LedEvent(3, 19.0, 1.3),
+		new LedEvent(1, 19.0, 1.3),
+		new LedEvent(4, 20.0, 1.3),
+		new LedEvent(2, 20.0, 1.3),
+		new LedEvent(4, 21.5, 1.3),
+		new LedEvent(2, 21.5, 1.3),
+		new LedEvent(1, 23.5, 1.3),
+		new LedEvent(4, 24.0, 1.3),
+		new LedEvent(3, 24.0, 1.3),
+		new LedEvent(2, 25.0, 1.3),
+		new LedEvent(1, 26.0, 1.3),
+		new LedEvent(3, 26.5, 1.3),
+		new LedEvent(4, 26.5, 1.3),
+		new LedEvent(2, 27.0, 1.3),
+		new LedEvent(1, 29.0, 1.3),
+		new LedEvent(4, 29.0, 1.3),
+		new LedEvent(3, 30.0, 1.3),
+		new LedEvent(2, 30.0, 1.3),
+		new LedEvent(1, 30.5, 1.3),
+		new LedEvent(4, 32.0, 1.3),
+		new LedEvent(2, 32.5, 1.3),
+		new LedEvent(3, 34.0, 1.3),
+		new LedEvent(1, 35.0, 1.3),
+		new LedEvent(2, 35.0, 1.3),
+		new LedEvent(3, 36.0, 1.3),
+		new LedEvent(4, 37.0, 1.3),
+		new LedEvent(2, 38.0, 1.3),
+		new LedEvent(3, 39.0, 1.3),
+		new LedEvent(2, 40.0, 1.3),
+		new LedEvent(1, 40.0, 1.3),
+		new LedEvent(3, 41.0, 1.3),
+		new LedEvent(4, 41.0, 1.3),
+		new LedEvent(2, 42.0, 1.3),
+		new LedEvent(1, 42.0, 1.3),
+		new LedEvent(3, 43.0, 1.3),
+		new LedEvent(4, 43.5, 1.3),
+		new LedEvent(1, 45.0, 1.3),
+		new LedEvent(3, 45.0, 1.3),
+		new LedEvent(2, 46.0, 1.3),
+		new LedEvent(4, 46.0, 1.3),
+		new LedEvent(1, 47.0, 1.3),
+		new LedEvent(3, 47.5, 1.3),
+		new LedEvent(4, 48.0, 1.3),
+		new LedEvent(2, 49.0, 1.3),
+		new LedEvent(4, 50.0, 1.3),
+		new LedEvent(1, 50.5, 1.3),
+		new LedEvent(3, 50.5, 1.3),
+		new LedEvent(2, 52.0, 1.3),
+		new LedEvent(4, 53.5, 1.3),
+		new LedEvent(3, 53.5, 1.3),
+		new LedEvent(1, 55.0, 1.3),
+		new LedEvent(2, 55.0, 1.3),
+		new LedEvent(3, 56.0, 1.3),
+		new LedEvent(4, 56.5, 1.3),
+		new LedEvent(1, 58.0, 1.3),
+		new LedEvent(3, 59.0, 1.3),
+		new LedEvent(2, 59.0, 1.3),
+		new LedEvent(4, 60.0, 1.3),
+		new LedEvent(1, 60.0, 1.3)
 		
 	};
 
 	private Dictionary<int, int> _ledMapping = new Dictionary<int, int>
 	{
-		{1, 1}, // LED 1 mapeado al pin digital 5
-		{2, 2}, // LED 2 mapeado al pin digital 4
-		{3, 3}, // LED 3 mapeado al pin digital 3
-		{4, 4}  // LED 4 mapeado al pin digital 2
+		{1, 1}, 
+		{2, 2}, 
+		{3, 3}, 
+		{4, 4}  
 	};
 	
 	private Dictionary<int, double> _lastSensorActivation = new Dictionary<int, double>(); // Última activación por sensor
@@ -38,6 +101,7 @@ public partial class Minijuego : Node
 	
 	public override void _Ready()
 	{
+		_audioPlayer = GetNode<AudioStreamPlayer>("sonido");
 		_player = GetNode<PlayerLife>("UiPersonaje/Player2");
 		res://UI/PlayerLife.cs
 		if (_player == null)
@@ -97,6 +161,24 @@ public partial class Minijuego : Node
 		{
 			_patternCompleted = true; // Marca que el patrón se ha completado
 			GD.Print("Patrón de LEDs completado.");
+			
+			// Apagar todos los LEDs
+			foreach (var led in _ledMapping.Values)
+			{
+				_arduino.WriteLine($"OFF:{led}");
+			}
+			GD.Print("Todos los LEDs apagados.");
+			
+		}
+		if (_player.CurrentHealth == 0)
+		{
+			// Apagar todos los LEDs
+			foreach (var led in _ledMapping.Values)
+			{
+				_arduino.WriteLine($"OFF:{led}");
+			}
+			GD.Print("Todos los LEDs apagados.");
+			
 		}
 		
 	}
@@ -113,6 +195,7 @@ public partial class Minijuego : Node
 	{
 		GD.Print($"Activando LED {ledEvent.Led}");
 		_arduino.WriteLine($"ON:{_ledMapping[ledEvent.Led]}"); // Envía comando para encender el LED
+		_audioPlayer.Play();
 		ledEvent.IsActive = true;
 	}
 
