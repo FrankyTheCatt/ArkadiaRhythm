@@ -77,7 +77,7 @@ public partial class Level1 : Level
 		//GLOBALES
 		base.songDuration = 185f;
 		base.pathDefeat = "res://MENU/DefeatScene.tscn";
-		base.pathVictory = "res://MENU/VictoryScene.tscn";
+		base.pathVictory = "res://Minijuego Leds/Minijuego_Leds.tscn";
 		base.maxBossLife = 5; 
 		base.playerHealth=5; // Vida del jugador, puede ser modificada según sea necesario.
 		base.maxLife = 5;// Define el máximo de vida del jugador

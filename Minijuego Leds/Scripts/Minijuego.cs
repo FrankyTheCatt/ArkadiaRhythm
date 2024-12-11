@@ -178,13 +178,13 @@ public partial class Minijuego : Node
 				_arduino.WriteLine($"OFF:{led}");
 			}
 			GD.Print("Todos los LEDs apagados.");
-			
+			GetTree().ChangeSceneToFile("res://MENU/Defeat_leds.tscn");
 		}
 		
 		//CAMBIO A ESCENA DE VICTORIA
 		if( _elapsedTime == 70.0)
 		{
-			
+			GetTree().ChangeSceneToFile("res://MENU/Victory_leds.tscn");
 		}
 		
 	}

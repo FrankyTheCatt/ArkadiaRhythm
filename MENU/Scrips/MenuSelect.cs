@@ -14,11 +14,11 @@ public partial class MenuSelect : Control
 	}
 	
 	public void _on_nivel_1_pressed() {
-		GetTree().ChangeSceneToFile("res://BASE JUEGO/Level.tscn");
+		GetTree().ChangeSceneToFile("res://Niveles/Nivel1/Level1.tscn");
 	}
 	
 	public void _on_level_2_pressed() {
-		
+		GetTree().ChangeSceneToFile("res://Niveles/Nivel2/Level2.tscn");
 	}
 	
 }
