@@ -1,7 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://deiq1gqanbh8l"]
+[gd_scene load_steps=8 format=3 uid="uid://deiq1gqanbh8l"]
 
 [ext_resource type="Script" path="res://MENU/Scrips/MenuSelect.cs" id="1_t1ele"]
-[ext_resource type="Texture2D" uid="uid://drann5t6g8ryt" path="res://icon.svg" id="2_rivs0"]
+[ext_resource type="Texture2D" uid="uid://bxsqldfdbeeh0" path="res://BASE JUEGO/assets/Captura_de_pantalla__52_-removebg-preview - copia.png" id="2_4j1we"]
+[ext_resource type="VideoStream" path="res://MENU/Assets/bc87e5124f8d2cfe810d403adc96ad01.ogv" id="2_5ye4t"]
+[ext_resource type="FontFile" uid="uid://b2y7m1xh2l3vd" path="res://MENU/Assets/Minecraft.ttf" id="2_pggqr"]
+[ext_resource type="Texture2D" uid="uid://3tmr7thb1puf" path="res://BASE JUEGO/assets/corte1-removebg-preview - copia.png" id="3_x4035"]
+[ext_resource type="AudioStream" uid="uid://dx5jag714kaut" path="res://MENU/Assets/music/DavidKBD - Pink Bloom Pack - 01 - Pink Bloom.ogg" id="6_03mkf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6djru"]
+bg_color = Color(2.5028e-06, 0.978829, 0.893772, 0.721569)
+skew = Vector2(0.5, 0)
 
 [node name="MenuSelect" type="Control"]
 layout_mode = 3
@@ -12,63 +20,104 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t1ele")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(1, 0.690196, 1, 1)
+offset_right = 1920.0
+offset_bottom = 1080.0
+scale = Vector2(0.6, 0.6)
+stream = ExtResource("2_5ye4t")
+autoplay = true
+expand = true
+loop = true
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -392.0
-offset_top = -148.5
-offset_right = 392.0
-offset_bottom = 148.5
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 100
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "SELECTOR DE NIVELES"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 200
-
-[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_rivs0")
-
-[node name="TextureButton2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_rivs0")
-
-[node name="TextureButton3" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-texture_normal = ExtResource("2_rivs0")
+[node name="ColorRect2" type="ColorRect" parent="VideoStreamPlayer2"]
+layout_mode = 0
+offset_left = 6.66666
+offset_top = -8.0
+offset_right = 1924.67
+offset_bottom = 1084.0
+color = Color(0, 0, 0, 0.607843)
+metadata/_edit_lock_ = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -6.0
+offset_top = 10.0
+offset_right = 194.0
+offset_bottom = 50.0
 
-[node name="Exit_Button" type="TextureButton" parent="VBoxContainer2"]
+[node name="Exit" type="Button" parent="VBoxContainer2"]
 layout_mode = 2
-texture_normal = ExtResource("2_rivs0")
+theme_override_fonts/font = ExtResource("2_pggqr")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_6djru")
+text = "Menu Principal"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton3" to="." method="_on_texture_button_3_pressed"]
-[connection signal="pressed" from="VBoxContainer2/Exit_Button" to="." method="_on_exit_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.14
+anchor_top = 0.05
+anchor_right = 0.14
+anchor_bottom = 0.05
+offset_left = 100.392
+offset_top = 101.6
+offset_right = 2167.39
+offset_bottom = 1373.6
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_pggqr")
+theme_override_font_sizes/font_size = 140
+text = "SELECCION DE NIVELES"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 365
+
+[node name="Nivel1" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_4j1we")
+
+[node name="Nivel2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_x4035")
+ignore_texture_size = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 380
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_pggqr")
+theme_override_font_sizes/font_size = 100
+text = "Infierno de Fuego"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("2_pggqr")
+theme_override_font_sizes/font_size = 100
+text = "Glamour de Hielo"
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_03mkf")
+autoplay = true
+
+[connection signal="pressed" from="VBoxContainer2/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Nivel1" to="." method="_on_nivel_1_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c1jcqaqajmqtk"
+path="res://.godot/imported/DavidKBD - Pink Bloom Pack - 07 - The Hidden One.ogg-9a249d660c705cd2bd4560346fa0a1bb.oggvorbisstr"
+
+[deps]
+
+source_file="res://MENU/Assets/music/DavidKBD - Pink Bloom Pack - 07 - The Hidden One.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Pink Bloom Pack - 07 - The Hidden One.ogg-9a249d660c705cd2bd4560346fa0a1bb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
