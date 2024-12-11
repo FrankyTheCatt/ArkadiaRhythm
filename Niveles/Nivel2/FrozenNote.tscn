@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ctvtriwhcubsh"]
+
+[ext_resource type="Script" path="res://Niveles/Nivel1/DamageNote.cs" id="1_vba11"]
+[ext_resource type="Texture2D" uid="uid://dwufqxvylv3u1" path="res://Niveles/Nivel2/heart broken.png" id="2_614ql"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvvsi"]
+radius = 36.0139
+
+[node name="FrozenNote" type="Area2D"]
+script = ExtResource("1_vba11")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.309, 3.069)
+scale = Vector2(0.17, 0.136)
+texture = ExtResource("2_614ql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_uvvsi")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
