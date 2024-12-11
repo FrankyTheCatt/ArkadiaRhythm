@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cvwon1r5aps55"]
+[gd_scene load_steps=37 format=3 uid="uid://b44qmctmovf37"]
 
 [ext_resource type="Script" path="res://Niveles/Nivel1/Level1.cs" id="2_df78g"]
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/SerialReader.cs" id="2_di281"]
