@@ -10,34 +10,28 @@ public partial class Level : Node2D
 	protected List<Timer> timers = new List<Timer>(); // temporizadores para cada carril
 	protected PackedScene keyObjectScene;  // referencia a la plantilla del KeyObject
 	protected SerialReader serialReader;
-	private int playerHealth = 5; // Vida del jugador, puede ser modificada según sea necesario.
-	private int maxLife = 5; // Define el máximo de vida del jugador
-	private PackedScene damageNoteScene;
-	private Timer bossLifeTimer;
-	private int bossLifeIndex = 1;
-	private int maxBossLife = 5; // Número máximo de vidas del boss
-	private float songDuration = 185f; // Duración de la canción en segundos
+ 	public int playerHealth; 
+	public int maxLife; 
+	public Timer bossLifeTimer;
+	public int bossLifeIndex = 1;
+	public int maxBossLife; // Número máximo de vidas del boss
+	public float songDuration; // Duración de la canción en segundos
+	public string pathVictory;
+	public string pathDefeat;
 
 	public void _Process()
 	{
 		Timer time = new Timer();
 		GD.Print(time);
 	}
-	public override void _Ready()
+    public override void _Ready()
 	{
+		InitializeLevel();
 		GD.Print("Estructura del árbol de nodos: ");
 		GetTree().Root.PrintTreePretty();  // verifica la estructura del árbol de nodos para saber si toma los nodos bn
 
 		// cargaa la escena KeyObject para instanciar nuevas notas y que no se bugeee!!!!
 		keyObjectScene = (PackedScene)ResourceLoader.Load("res://BASE JUEGO/KeyObject.tscn");
-
-		// cargar la escena DamageNote para instanciar nuevas notas de daño
-		damageNoteScene = (PackedScene)ResourceLoader.Load("res://Niveles/Nivel1/DamageNote.tscn");
-		if (damageNoteScene == null)
-		{
-			GD.PrintErr("Error: No se pudo cargar la escena de DamageNote.");
-			return;
-		}
 
 		// obtiene el nodo SerialReader
 		serialReader = GetNodeOrNull<SerialReader>("Objects/SerialReader");
@@ -73,80 +67,12 @@ public partial class Level : Node2D
 		AddChild(audioTimer);
 		audioTimer.Start();
 
-		// Load JSON DAMAGENOTE
-		Godot.Collections.Dictionary data2 = new Godot.Collections.Dictionary();
-		string json2 = Json.Stringify(data2);
-		string path2 = ProjectSettings.GlobalizePath("res://BASE JUEGO/mapeaditos/");
-		GD.Print("JSON DAMAGENOTE");
-		GD.Print(LoadTextFromFile(path2, "tiempos_damages_notes.json"));
-		string loadedData2 = LoadTextFromFile(path2, "tiempos_damages_notes.json");
-
-		Json jsonLoader2 = new Json();
-		Error error2 = jsonLoader2.Parse(loadedData2);
-
-		if (error2 != Error.Ok)
-		{
-			GD.Print(error2);
-			return;
-		}
-		Godot.Collections.Dictionary loadedDataDict2 = (Godot.Collections.Dictionary)jsonLoader2.Data;
-
-		// Procesar tiempos de damage notes
-		var damage_rojo_times_list = new List<float>();
-		foreach (var time in (Array)loadedDataDict2["rojo_times"])
-		{
-			damage_rojo_times_list.Add((float)time);
-		}
-
-		for (int i = 0; i < damage_rojo_times_list.Count; i++)
-		{
-			//GD.Print(damage_rojo_times_list[i]);
-		}
-
-		var damage_azul_times_list = new List<float>();
-		foreach (var time in (Array)loadedDataDict2["azul_times"])
-		{
-			damage_azul_times_list.Add((float)time);
-		}
-
-		for (int i = 0; i < damage_azul_times_list.Count; i++)
-		{
-			//GD.Print(damage_azul_times_list[i]);
-		}
-
-		var damage_verde_times_list = new List<float>();
-		foreach (var time in (Array)loadedDataDict2["verde_times"])
-		{
-			damage_verde_times_list.Add((float)time);
-		}
-
-		for (int i = 0; i < damage_verde_times_list.Count; i++)
-		{
-			//GD.Print(damage_verde_times_list[i]);
-		}
-
-		var damage_amarillo_times_list = new List<float>();
-		foreach (var time in (Array)loadedDataDict2["amarillo_times"])
-		{
-			damage_amarillo_times_list.Add((float)time);
-		}
-
-		for (int i = 0; i < damage_amarillo_times_list.Count; i++)
-		{
-			//GD.Print(damage_amarillo_times_list[i]);
-		}
-
-		SetupDamageNoteTimersForLane(damage_rojo_times_list, 0);     // Carril rojo
-		SetupDamageNoteTimersForLane(damage_azul_times_list, 1);     // Carril azul
-		SetupDamageNoteTimersForLane(damage_verde_times_list, 2);    // Carril verde
-		SetupDamageNoteTimersForLane(damage_amarillo_times_list, 3); // Carril amarillo
-
 		// Load JSON
 		Godot.Collections.Dictionary data = new Godot.Collections.Dictionary();
 		string json = Json.Stringify(data);
 		string path = ProjectSettings.GlobalizePath("res://BASE JUEGO/mapeaditos/");
-		GD.Print("JSON KEYOBJECT");
-		GD.Print(LoadTextFromFile(path, "tiempos_teclas.json"));
+		//GD.Print("JSON KEYOBJECT");
+		//GD.Print(LoadTextFromFile(path, "tiempos_teclas.json"));
 		string loadedData = LoadTextFromFile(path, "tiempos_teclas.json");
 
 		Json jsonLoader = new Json();
@@ -165,20 +91,10 @@ public partial class Level : Node2D
 			amarillo_times_list.Add((float)time);
 
 		}
-
-		for (int i = 0; i < amarillo_times_list.Count; i++)
-		{
-			//GD.Print(amarillo_times_list[i]);
-		}
 		var verde_times_list = new List<float>();
 		foreach (var time in (Array)loadedDataDict["verde_times"])
 		{
 			verde_times_list.Add((float)time);
-		}
-
-		for (int i = 0; i < verde_times_list.Count; i++)
-		{
-			//GD.Print(verde_times_list[i]);
 		}
 
 		var azul_times_list = new List<float>();
@@ -187,20 +103,10 @@ public partial class Level : Node2D
 			azul_times_list.Add((float)time);
 		}
 
-		for (int i = 0; i < azul_times_list.Count; i++)
-		{
-			//GD.Print(azul_times_list[i]);
-		}
-
 		var rojo_times_list = new List<float>();
 		foreach (var time in (Array)loadedDataDict["rojo_times"])
 		{
 			rojo_times_list.Add((float)time);
-		}
-
-		for (int i = 0; i < rojo_times_list.Count; i++)
-		{
-			//GD.Print(rojo_times_list[i]);
 		}
 
 		SetupTimersForLane(rojo_times_list, 0);     // Carril rojo
@@ -209,7 +115,7 @@ public partial class Level : Node2D
 		SetupTimersForLane(amarillo_times_list, 3); // Carril amarillo
 		RotateHeart(playerHealth);
 
-			// Inicializa el Timer
+	// Inicializa el Timer
 	bossLifeTimer = new Timer();
 	AddChild(bossLifeTimer);
 	bossLifeTimer.OneShot = false;
@@ -220,7 +126,6 @@ public partial class Level : Node2D
 
 	}
 	//FUNCIONES
-
 	// Método para girar todos los corazones
 	private void RotateHeart(int heartIndex)
 	{
@@ -237,43 +142,6 @@ public partial class Level : Node2D
 		}
 	}
 
-	private void SetupDamageNoteTimersForLane(List<float> timesList, int key)
-	{
-		foreach (var time in timesList)
-		{
-			Timer timer = new Timer();
-			AddChild(timer);
-			timer.WaitTime = time;
-			timer.OneShot = true;
-
-			// Conecta la señal Timeout para llamar a una función que spawnea el objeto en el carril especificado
-			timer.Timeout += () => SpawnDamageNoteInLane(key);
-			timer.Start();
-		}
-	}
-	// método que se llama cuando un temporizador se activa
-	private async void SpawnDamageNoteInLane(int key)
-	{
-		await ToSignal(GetTree().CreateTimer(1.5f), "timeout"); // Espera 2.9 segundos antes de continuar
-
-		Vector2 pos = new Vector2(positions[key], 0);  // posición inicial (X) del carril
-
-		if (damageNoteScene != null)
-		{
-			var newDamageNote = (DamageNote)damageNoteScene.Instantiate();
-			AddChild(newDamageNote);
-
-			// Inicializa el DamageNote en el carril correcto
-			newDamageNote.Spawn(key, pos);  // Posición en el carril especificado
-			newDamageNote.SetSerialReader(serialReader);  // Asigna el SerialReader al nuevo objeto
-			newDamageNote.Visible = true;  // Asegura que la nota sea visible
-										   //GD.Print("Nota de daño generada en el carril: " + key);
-		}
-		else
-		{
-			GD.PrintErr("Error: No se pudo cargar la escena de DamageNote.");
-		}
-	}
 	public void TakeDamage(int damageAmount)
 	{
 		// Reducir la vida del jugador
@@ -337,7 +205,7 @@ public partial class Level : Node2D
 	}
 	
 	private void Die() {
-		GetTree().ChangeSceneToFile("res://MENU/DefeatScene.tscn");
+		GetTree().ChangeSceneToFile(pathDefeat);
 	}
 	
 	private void SetupTimersForLane(List<float> timesList, int key)
@@ -375,7 +243,7 @@ public partial class Level : Node2D
 		}
 	}
 
-	private string LoadTextFromFile(string path, string fileName)
+	public string LoadTextFromFile(string path, string fileName)
 	{
 		string data = null;
 		path = Path.Join(path, fileName);
@@ -422,11 +290,16 @@ private void OnBossLifeTimerTimeout()
 		bossLifeIndex++;
 		if(bossLifeIndex == maxBossLife) {
 			bossLifeTimer.Stop();
-			GetTree().ChangeSceneToFile("res://MENU/VictoryScene.tscn");
+			GetTree().ChangeSceneToFile(pathVictory);
 		}
 	} else {
-		// pone aca lo que quieras uwu oh no FATAL ERRROR
 		GD.PrintErr("FATAL ERROR, ERROR MATEMÁTICO");
 	}
 }
+    public virtual void InitializeLevel()
+    {
+        // Código común para inicializar el nivel
+        GD.Print("Inicializando nivel base");
+
+    }
 }

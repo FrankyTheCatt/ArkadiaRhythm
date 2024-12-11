@@ -1,0 +1,587 @@
+[gd_scene load_steps=37 format=3 uid="uid://cvwon1r5aps55"]
+
+[ext_resource type="Script" path="res://Niveles/Nivel1/Level1.cs" id="2_df78g"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/SerialReader.cs" id="2_di281"]
+[ext_resource type="Texture2D" uid="uid://qpu6irtvwvgg" path="res://BASE JUEGO/assets/Pixel_editado.png" id="3_075ed"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Verde.cs" id="4_cwbie"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Azul.cs" id="5_iysi8"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Amarillo.cs" id="6_ba8m7"]
+[ext_resource type="Script" path="res://BASE JUEGO/scripts/Rojo.cs" id="7_nde5g"]
+[ext_resource type="VideoStream" path="res://BASE JUEGO/assets/calaveraMoto.ogv" id="8_yaj27"]
+[ext_resource type="Texture2D" uid="uid://75ku8jsabbob" path="res://MENU/Assets/IMG_2499.png" id="9_dgowb"]
+[ext_resource type="Texture2D" uid="uid://bqnfaa1g14ww8" path="res://BASE JUEGO/assets/color.png" id="10_piic4"]
+[ext_resource type="VideoStream" path="res://BASE JUEGO/assets/fondoCalaveraa.ogv" id="11_q2pfa"]
+[ext_resource type="AudioStream" uid="uid://chcnyb25qnb1n" path="res://BASE JUEGO/mapeaditos/musica/Numb.mp3" id="12_vf2gs"]
+[ext_resource type="Texture2D" uid="uid://35b6x4y0rl3i" path="res://BASE JUEGO/assets/calaveraPlayer.png" id="13_83nt6"]
+[ext_resource type="Texture2D" uid="uid://byw8qwa8xo5x8" path="res://BASE JUEGO/assets/calaveraSpriteFramesHeart.png" id="14_gf57y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u8owt"]
+radius = 50.3587
+
+[sub_resource type="Animation" id="Animation_q8bcc"]
+resource_name = "ApretarVerde"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_21bcg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_ic2dj"]
+resource_name = "SoltarVerde"
+length = 0.16667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nq1qi"]
+_data = {
+"ApretarVerde": SubResource("Animation_q8bcc"),
+"RESET": SubResource("Animation_21bcg"),
+"SoltarVerde": SubResource("Animation_ic2dj")
+}
+
+[sub_resource type="Animation" id="Animation_2qjkg"]
+resource_name = "ApretarAzul"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_o0bih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m780y"]
+resource_name = "SoltarAzul"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fmmy4"]
+_data = {
+"ApretarAzul": SubResource("Animation_2qjkg"),
+"RESET": SubResource("Animation_o0bih"),
+"SoltarAzul": SubResource("Animation_m780y")
+}
+
+[sub_resource type="Animation" id="Animation_u2lm0"]
+resource_name = "ApretarAmarillo"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_ajsc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_hshih"]
+resource_name = "SoltarAmarillo"
+length = 0.16667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6kk5l"]
+_data = {
+"ApretarAmarillo": SubResource("Animation_u2lm0"),
+"RESET": SubResource("Animation_ajsc6"),
+"SoltarAmarillo": SubResource("Animation_hshih")
+}
+
+[sub_resource type="Animation" id="Animation_b0b3x"]
+resource_name = "ApretarRojo"
+length = 0.333337
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_d4gw1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+
+[sub_resource type="Animation" id="Animation_gecig"]
+resource_name = "SoltarRojo"
+length = 0.16667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [13]
+}
+
+[sub_resource type="Animation" id="Animation_vo0e1"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ttg5p"]
+_data = {
+"ApretarRojo": SubResource("Animation_b0b3x"),
+"RESET": SubResource("Animation_d4gw1"),
+"SoltarRojo": SubResource("Animation_gecig"),
+"new_animation": SubResource("Animation_vo0e1")
+}
+
+[sub_resource type="Animation" id="Animation_ptjoj"]
+resource_name = "girarPlayer"
+length = 0.67
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_71s4e"]
+_data = {
+"girarPlayer": SubResource("Animation_ptjoj")
+}
+
+[sub_resource type="Animation" id="Animation_v1hmi"]
+resource_name = "girarBoss"
+length = 0.6667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.166667, 0.233333, 0.3, 0.366667, 0.433333, 0.5, 0.566667, 0.633333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnmkx"]
+_data = {
+"girarBoss": SubResource("Animation_v1hmi")
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource("2_df78g")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="SerialReader" type="Node" parent="Objects"]
+script = ExtResource("2_di281")
+
+[node name="ColorObject" type="Area2D" parent="Objects"]
+texture_filter = 1
+position = Vector2(462, 577)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject"]
+shape = SubResource("CircleShape2D_u8owt")
+
+[node name="Verde" type="Sprite2D" parent="Objects/ColorObject"]
+visibility_layer = 2
+texture = ExtResource("3_075ed")
+hframes = 4
+vframes = 4
+frame = 3
+script = ExtResource("4_cwbie")
+
+[node name="animVerde" type="AnimationPlayer" parent="Objects/ColorObject/Verde"]
+libraries = {
+"": SubResource("AnimationLibrary_nq1qi")
+}
+autoplay = "SoltarVerde"
+
+[node name="ColorObject2" type="Area2D" parent="Objects"]
+position = Vector2(332, 578)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject2"]
+shape = SubResource("CircleShape2D_u8owt")
+
+[node name="Azul" type="Sprite2D" parent="Objects/ColorObject2"]
+visibility_layer = 2
+texture = ExtResource("3_075ed")
+hframes = 4
+vframes = 4
+script = ExtResource("5_iysi8")
+
+[node name="animAzul" type="AnimationPlayer" parent="Objects/ColorObject2/Azul"]
+libraries = {
+"": SubResource("AnimationLibrary_fmmy4")
+}
+autoplay = "SoltarAzul"
+
+[node name="ColorObject3" type="Area2D" parent="Objects"]
+position = Vector2(207, 578)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject3"]
+shape = SubResource("CircleShape2D_u8owt")
+
+[node name="Amarillo" type="Sprite2D" parent="Objects/ColorObject3"]
+visibility_layer = 2
+texture = ExtResource("3_075ed")
+hframes = 4
+vframes = 4
+frame = 8
+script = ExtResource("6_ba8m7")
+
+[node name="animAmarillo" type="AnimationPlayer" parent="Objects/ColorObject3/Amarillo"]
+libraries = {
+"": SubResource("AnimationLibrary_6kk5l")
+}
+autoplay = "SoltarAmarillo"
+
+[node name="ColorObject4" type="Area2D" parent="Objects"]
+position = Vector2(79, 578)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Objects/ColorObject4"]
+shape = SubResource("CircleShape2D_u8owt")
+
+[node name="Rojo" type="Sprite2D" parent="Objects/ColorObject4"]
+visibility_layer = 2
+texture = ExtResource("3_075ed")
+hframes = 4
+vframes = 4
+frame = 12
+script = ExtResource("7_nde5g")
+
+[node name="animRojo" type="AnimationPlayer" parent="Objects/ColorObject4/Rojo"]
+libraries = {
+"": SubResource("AnimationLibrary_ttg5p")
+}
+autoplay = "SoltarRojo"
+
+[node name="VideoStreamPlayer3" type="VideoStreamPlayer" parent="Objects"]
+texture_filter = 1
+offset_left = 520.0
+offset_top = -7.0
+offset_right = 1220.0
+offset_bottom = 657.0
+stream = ExtResource("8_yaj27")
+autoplay = true
+expand = true
+loop = true
+metadata/_edit_lock_ = true
+
+[node name="Img2499" type="Sprite2D" parent="Objects/VideoStreamPlayer3"]
+position = Vector2(352, 333)
+scale = Vector2(0.426829, 0.40585)
+texture = ExtResource("9_dgowb")
+
+[node name="Color" type="Sprite2D" parent="Objects"]
+show_behind_parent = true
+position = Vector2(574.25, 325.5)
+scale = Vector2(16.8043, 7.87059)
+texture = ExtResource("10_piic4")
+metadata/_edit_lock_ = true
+
+[node name="Color4" type="Sprite2D" parent="Objects"]
+modulate = Color(0.627782, 0.43749, 0.680544, 1)
+show_behind_parent = true
+position = Vector2(335, 317)
+scale = Vector2(1.68478, 8.36324)
+texture = ExtResource("10_piic4")
+metadata/_edit_lock_ = true
+
+[node name="Color2" type="Sprite2D" parent="Objects"]
+modulate = Color(0.627782, 0.43749, 0.680544, 1)
+show_behind_parent = true
+position = Vector2(78, 318)
+scale = Vector2(1.68478, 8.36324)
+texture = ExtResource("10_piic4")
+metadata/_edit_lock_ = true
+
+[node name="Color5" type="Sprite2D" parent="Objects"]
+modulate = Color(0.627782, 0.43749, 0.680544, 1)
+show_behind_parent = true
+position = Vector2(463, 326)
+scale = Vector2(1.68478, 8.36324)
+texture = ExtResource("10_piic4")
+metadata/_edit_lock_ = true
+
+[node name="Color3" type="Sprite2D" parent="Objects"]
+modulate = Color(0.627782, 0.43749, 0.680544, 1)
+show_behind_parent = true
+position = Vector2(206, 320)
+scale = Vector2(1.68478, 8.36324)
+texture = ExtResource("10_piic4")
+metadata/_edit_lock_ = true
+
+[node name="VideoStreamPlayer4" type="VideoStreamPlayer" parent="Objects"]
+modulate = Color(1, 1, 1, 0.403922)
+self_modulate = Color(1, 1, 1, 0.223529)
+texture_filter = 1
+offset_left = -178.0
+offset_top = -4.0
+offset_right = 522.0
+offset_bottom = 660.0
+stream = ExtResource("11_q2pfa")
+autoplay = true
+expand = true
+loop = true
+
+[node name="VideoStreamPlayer5" type="VideoStreamPlayer" parent="Objects"]
+modulate = Color(1, 1, 1, 0.403922)
+self_modulate = Color(1, 1, 1, 0.223529)
+texture_filter = 1
+offset_left = -178.0
+offset_top = -4.0
+offset_right = 522.0
+offset_bottom = 660.0
+stream = ExtResource("11_q2pfa")
+autoplay = true
+expand = true
+loop = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_vf2gs")
+volume_db = -30.969
+
+[node name="PlayerLife2" type="Sprite2D" parent="."]
+position = Vector2(797, 603)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_83nt6")
+hframes = 10
+frame = 9
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="PlayerLife2"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="PlayerLife3" type="Sprite2D" parent="."]
+position = Vector2(854.728, 602.748)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_83nt6")
+hframes = 10
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="PlayerLife3"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="PlayerLife4" type="Sprite2D" parent="."]
+position = Vector2(911.728, 602.748)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_83nt6")
+hframes = 10
+
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="PlayerLife4"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="PlayerLife5" type="Sprite2D" parent="."]
+position = Vector2(969.728, 602.748)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_83nt6")
+hframes = 10
+
+[node name="AnimationPlayer5" type="AnimationPlayer" parent="PlayerLife5"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="PlayerLife1" type="Sprite2D" parent="."]
+position = Vector2(741, 603)
+scale = Vector2(0.844946, 0.874951)
+texture = ExtResource("13_83nt6")
+hframes = 10
+
+[node name="AnimationPlayer1" type="AnimationPlayer" parent="PlayerLife1"]
+libraries = {
+"": SubResource("AnimationLibrary_71s4e")
+}
+autoplay = "girarPlayer"
+
+[node name="BossLife1" type="Sprite2D" parent="."]
+position = Vector2(959, 44)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("14_gf57y")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss1" type="AnimationPlayer" parent="BossLife1"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife2" type="Sprite2D" parent="."]
+position = Vector2(903, 44)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("14_gf57y")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss2" type="AnimationPlayer" parent="BossLife2"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife3" type="Sprite2D" parent="."]
+position = Vector2(845, 44)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("14_gf57y")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss3" type="AnimationPlayer" parent="BossLife3"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife4" type="Sprite2D" parent="."]
+position = Vector2(789, 44)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("14_gf57y")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss4" type="AnimationPlayer" parent="BossLife4"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
+
+[node name="BossLife5" type="Sprite2D" parent="."]
+position = Vector2(732, 44)
+scale = Vector2(0.558395, 0.573397)
+texture = ExtResource("14_gf57y")
+hframes = 10
+frame = 3
+
+[node name="AnimationBoss5" type="AnimationPlayer" parent="BossLife5"]
+libraries = {
+"": SubResource("AnimationLibrary_vnmkx")
+}
+autoplay = "girarBoss"
