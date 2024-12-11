@@ -9,11 +9,11 @@ public partial class MenuSelect : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {}
 	
-	public void _on_exit_button_pressed() {
+	public void _on_exit_pressed() {
 		GetTree().ChangeSceneToFile("res://MENU/menu_inicio.tscn");
 	}
 	
-	public void _on_level_1_pressed() {
+	public void _on_nivel_1_pressed() {
 		GetTree().ChangeSceneToFile("res://BASE JUEGO/Level.tscn");
 	}
 	
@@ -21,7 +21,4 @@ public partial class MenuSelect : Control
 		
 	}
 	
-	public void _on_level_3_pressed() {
-		
-	}
 }

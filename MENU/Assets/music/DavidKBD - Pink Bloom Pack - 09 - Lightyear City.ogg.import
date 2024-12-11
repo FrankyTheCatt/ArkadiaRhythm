@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bj3keifcunl2f"
+path="res://.godot/imported/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg-f7177294192e64bb638c405366e49ad9.oggvorbisstr"
+
+[deps]
+
+source_file="res://MENU/Assets/music/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg"
+dest_files=["res://.godot/imported/DavidKBD - Pink Bloom Pack - 09 - Lightyear City.ogg-f7177294192e64bb638c405366e49ad9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

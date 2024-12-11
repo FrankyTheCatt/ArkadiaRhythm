@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cwhdkt5ulviq6"]
+[gd_scene load_steps=16 format=3 uid="uid://cwhdkt5ulviq6"]
 
 [ext_resource type="Script" path="res://MENU/Scrips/MainMenu.cs" id="1_dxy1x"]
 [ext_resource type="VideoStream" path="res://MENU/Assets/bc87e5124f8d2cfe810d403adc96ad01.ogv" id="2_d8yo4"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://chhne235x1p5f" path="res://MENU/Botones.tres" id="7_hqh6p"]
 [ext_resource type="Texture2D" uid="uid://bdy70q2pvuur4" path="res://MENU/Assets/LogoUCN_acentuado.png" id="7_x1xjk"]
 [ext_resource type="Texture2D" uid="uid://dj3ypxa51mlcy" path="res://MENU/Assets/Ilustracion_sin_titulo.png" id="8_los2n"]
+[ext_resource type="AudioStream" uid="uid://dx5jag714kaut" path="res://MENU/Assets/music/DavidKBD - Pink Bloom Pack - 01 - Pink Bloom.ogg" id="9_s0qlh"]
 
 [sub_resource type="Theme" id="Theme_cft6w"]
 resource_local_to_scene = true
@@ -169,6 +170,10 @@ texture = ExtResource("5_uqygd")
 position = Vector2(651.667, 400)
 scale = Vector2(0.757917, 0.781189)
 texture = ExtResource("8_los2n")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_s0qlh")
+autoplay = true
 
 [connection signal="button_up" from="Botones/play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="Botones/options" to="." method="_on_options_button_up"]
