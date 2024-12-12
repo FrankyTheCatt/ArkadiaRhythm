@@ -91,7 +91,6 @@ texture_normal = ExtResource("2_4j1we")
 [node name="Nivel2" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_x4035")
-ignore_texture_size = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -121,3 +120,4 @@ autoplay = true
 
 [connection signal="pressed" from="VBoxContainer2/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Nivel1" to="." method="_on_nivel_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Nivel2" to="." method="_on_nivel_2_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgjkve85xabv8"]
+[gd_scene load_steps=4 format=3 uid="uid://bgjkve85xabv8"]
 
-[ext_resource type="Texture2D" uid="uid://cn0f7vdixrevy" path="res://MENU/Assets/file-G7ujAjiXQUTIbvJ7LFjAkRJm.webp" id="1_3joyi"]
 [ext_resource type="Script" path="res://MENU/Scrips/VictoryScene.cs" id="1_11flh"]
+[ext_resource type="VideoStream" path="res://MENU/Assets/xVICtory.ogv" id="2_4ky0e"]
+[ext_resource type="Texture2D" uid="uid://deq8e14aheirs" path="res://MENU/Assets/VICTORY.png" id="3_50qdb"]
 
 [node name="VictoryScene" type="Control"]
 layout_mode = 3
@@ -12,15 +13,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_11flh")
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 2
+offset_left = -7.0
+offset_top = -562.0
+offset_right = 1250.0
+offset_bottom = 933.0
+stream = ExtResource("2_4ky0e")
+autoplay = true
+expand = true
+loop = true
+
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 offset_right = 1792.0
 offset_bottom = 1024.0
 scale = Vector2(0.642368, 0.632732)
-
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-layout_mode = 2
-texture = ExtResource("1_3joyi")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -43,5 +51,9 @@ horizontal_alignment = 1
 [node name="Return" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "RETURN TO MAIN MENU"
+
+[node name="Victory" type="Sprite2D" parent="."]
+position = Vector2(577, 224)
+texture = ExtResource("3_50qdb")
 
 [connection signal="button_up" from="VBoxContainer/Return" to="." method="_on_return_button_up"]

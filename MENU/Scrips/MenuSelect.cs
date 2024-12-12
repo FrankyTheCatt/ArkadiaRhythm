@@ -17,7 +17,7 @@ public partial class MenuSelect : Control
 		GetTree().ChangeSceneToFile("res://Niveles/Nivel1/Level1.tscn");
 	}
 	
-	public void _on_level_2_pressed() {
+	public void _on_nivel_2_pressed() {
 		GetTree().ChangeSceneToFile("res://Niveles/Nivel2/Level2.tscn");
 	}
 	
