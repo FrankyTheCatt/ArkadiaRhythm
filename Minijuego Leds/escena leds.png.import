@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://x3vcfi765uqm"
+path="res://.godot/imported/escena leds.png-236f57d2e29c0a8edae8db4a7b0c8cba.ctex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Minijuego Leds/escena leds.png"
+dest_files=["res://.godot/imported/escena leds.png-236f57d2e29c0a8edae8db4a7b0c8cba.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
