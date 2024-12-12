@@ -14,7 +14,8 @@ var is_f_pressed = false
 var recording_enabled = true  # Controla si se siguen registrando las teclas
 
 # Ruta del archivo donde se guardarán los datos
-var save_file_path = "res://BASE JUEGO/mapeaditos/tiempos_teclas.json"
+# var save_file_path = "res://BASE JUEGO/mapeaditos/tiempos_teclas2.json"
+var save_file_path = "res://BASE JUEGO/mapeaditos/tiempos_damages_notes2.json"
 
 func _ready():
 	print("Listo para registrar tiempos de teclas")

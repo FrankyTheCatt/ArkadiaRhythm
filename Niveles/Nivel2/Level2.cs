@@ -1,92 +1,90 @@
 using Godot;
 using System.Collections.Generic;
-using GodotDictionary = Godot.Collections.Dictionary; // Alias para evitar ambigüedades
+using System.IO;
+using Godot.Collections; // referencia al espacio de nombres correcto para usar Dictionary
 
 public partial class Level2 : Level
 {
 	private PackedScene frozenNoteScene;
-	private bool[] lanesFrozen = new bool[4]; // Estado de congelación de los carriles
-	private int[] freezeCounters = new int[4]; // Contadores de "descongelar" para cada carril
-
 	public override void InitializeLevel()
 	{
-		// cargar la escena FrozenNote para instanciar nuevas notas congeladas
+		base.pathCancion = "tiempos_teclas2.json";
 		frozenNoteScene = (PackedScene)ResourceLoader.Load("res://Niveles/Nivel2/FrozenNote.tscn");
 		if (frozenNoteScene == null)
 		{
-			GD.PrintErr("Error: No se pudo cargar la escena de FrozenNote.");
+			GD.PrintErr("Error: No se pudo cargar la escena de DamageNote.");
 			return;
 		}
-		else
-		{
-			GD.Print("Escena de FrozenNote cargada correctamente.");
+		else{
+			GD.Print("Escena de DamageNote cargada correctamente.");
 		}
 
-		// Load JSON FrozenNote
-		GodotDictionary data = new GodotDictionary();
-		string json = Json.Stringify(data);
-		string path = ProjectSettings.GlobalizePath("res://BASE JUEGO/mapeaditos/");
-		GD.Print("JSON FrozenNote");
-		GD.Print(base.LoadTextFromFile(path, "tiempos_frozen_notes.json"));
-		string loadedData = base.LoadTextFromFile(path, "tiempos_frozen_notes.json");
+		// Load JSON DAMAGENOTE
+		Godot.Collections.Dictionary data2 = new Godot.Collections.Dictionary();
+		string json2 = Json.Stringify(data2);
+		string path2 = ProjectSettings.GlobalizePath("res://BASE JUEGO/mapeaditos/");
+		string loadedData2 = base.LoadTextFromFile(path2, "tiempos_damages_notes2.json");
+		GD.Print("JSON DAMAGENOTE");
+		GD.Print(base.LoadTextFromFile(path2, "tiempos_damages_notes.json"));
 
-		Json jsonLoader = new Json();
-		Error error = jsonLoader.Parse(loadedData);
 
-		if (error != Error.Ok)
+		Json jsonLoader2 = new Json();
+		Error error2 = jsonLoader2.Parse(loadedData2);
+
+		if (error2 != Error.Ok)
 		{
-			GD.Print(error);
+			GD.Print(error2);
 			return;
 		}
-		GodotDictionary loadedDataDict = (GodotDictionary)jsonLoader.Data;
+		Godot.Collections.Dictionary loadedDataDict2 = (Godot.Collections.Dictionary)jsonLoader2.Data;
 
-		// Procesar tiempos de frozen notes
-		var frozen_rojo_times_list = new List<float>();
-		foreach (var time in (Godot.Collections.Array)loadedDataDict["rojo_times"])
+		// Procesar tiempos de damage notes
+		var damage_rojo_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict2["rojo_times"])
 		{
-			frozen_rojo_times_list.Add((float)time);
+			damage_rojo_times_list.Add((float)time);
 		}
 
-		var frozen_azul_times_list = new List<float>();
-		foreach (var time in (Godot.Collections.Array)loadedDataDict["azul_times"])
+		for (int i = 0; i < damage_rojo_times_list.Count; i++)
 		{
-			frozen_azul_times_list.Add((float)time);
+			//GD.Print(damage_rojo_times_list[i]);
 		}
 
-		var frozen_verde_times_list = new List<float>();
-		foreach (var time in (Godot.Collections.Array)loadedDataDict["verde_times"])
+		var damage_azul_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict2["azul_times"])
 		{
-			frozen_verde_times_list.Add((float)time);
+			damage_azul_times_list.Add((float)time);
 		}
 
-		var frozen_amarillo_times_list = new List<float>();
-		foreach (var time in (Godot.Collections.Array)loadedDataDict["amarillo_times"])
+		var damage_verde_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict2["verde_times"])
 		{
-			frozen_amarillo_times_list.Add((float)time);
+			damage_verde_times_list.Add((float)time);
 		}
 
-		SetupFrozenNoteTimersForLane(frozen_rojo_times_list, 0);     // Carril rojo
-		SetupFrozenNoteTimersForLane(frozen_azul_times_list, 1);     // Carril azul
-		SetupFrozenNoteTimersForLane(frozen_verde_times_list, 2);    // Carril verde
-		SetupFrozenNoteTimersForLane(frozen_amarillo_times_list, 3); // Carril amarillo
+		var damage_amarillo_times_list = new List<float>();
+		foreach (var time in (Array)loadedDataDict2["amarillo_times"])
+		{
+			damage_amarillo_times_list.Add((float)time);
+		}
 
-		// GLOBALES
-		base.songDuration = 150f;
+		SetupDamageNoteTimersForLane(damage_rojo_times_list, 0);     // Carril rojo
+		SetupDamageNoteTimersForLane(damage_azul_times_list, 1);     // Carril azul
+		SetupDamageNoteTimersForLane(damage_verde_times_list, 2);    // Carril verde
+		SetupDamageNoteTimersForLane(damage_amarillo_times_list, 3); // Carril amarillo
+		
+		
+		//GLOBALES
+		base.songDuration = 125f;
 		base.pathDefeat = "res://MENU/DefeatScene.tscn";
 		base.pathVictory = "res://Minijuego Leds/Minijuego_Leds.tscn";
-		base.maxBossLife = 5; // Vida del boss, puede ser modificada según sea necesario.
-		base.playerHealth = 5; // Vida del jugador, puede ser modificada según sea necesario.
-		base.maxLife = 5; // Define el máximo de vida del jugador
+		base.maxBossLife = 5; 
+		base.playerHealth=5; // Vida del jugador, puede ser modificada según sea necesario.
+		base.maxLife = 5;// Define el máximo de vida del jugador
 
-		// Inicializar estados de los carriles
-		for (int i = 0; i < lanesFrozen.Length; i++)
-		{
-			lanesFrozen[i] = false;
-			freezeCounters[i] = 0;
-		}
 	}
 
-	private void SetupFrozenNoteTimersForLane(List<float> timesList, int key)
+		private void SetupDamageNoteTimersForLane(List<float> timesList, int key)
 	{
 		foreach (var time in timesList)
 		{
@@ -96,43 +94,29 @@ public partial class Level2 : Level
 			timer.OneShot = true;
 
 			// Conecta la señal Timeout para llamar a una función que spawnea el objeto en el carril especificado
-			timer.Timeout += () => SpawnFrozenNoteInLane(key);
+			timer.Timeout += () => SpawnDamageNoteInLane(key);
 			timer.Start();
 		}
 	}
-
-	private async void SpawnFrozenNoteInLane(int key)
+	// método que se llama cuando un temporizador se activa
+	private async void SpawnDamageNoteInLane(int key)
 	{
-		await base.ToSignal(base.GetTree().CreateTimer(1.5f), "timeout"); // Espera 1.5 segundos antes de continuar
-
-		Vector2 pos = new Vector2(base.positions[key], 0); // posición inicial (X) del carril
+		Vector2 pos = new Vector2(base.positions[key], 0);  // posición inicial (X) del carril
 
 		if (frozenNoteScene != null)
 		{
-			var newFrozenNote = (FrozenNote)frozenNoteScene.Instantiate();
-			base.AddChild(newFrozenNote);
+			var newDamageNote = (FrozenNote)frozenNoteScene.Instantiate();
+			base.AddChild(newDamageNote);
 
-			// Inicializa la FrozenNote en el carril correcto
-			newFrozenNote.Spawn(key, pos); // Posición en el carril especificado
-			newFrozenNote.SetSerialReader(base.serialReader); // Asigna el SerialReader al nuevo objeto
-			newFrozenNote.Visible = true; // Asegura que la nota sea visible
-
-			// Congela el carril al colisionar
-			// Suscribe el método FreezeLane al evento OnNoteHit
-			newFrozenNote.OnNoteHit += () => FreezeLane(key);
+			// Inicializa el DamageNote en el carril correcto
+			newDamageNote.Spawn(key, pos);  // Posición en el carril especificado
+			newDamageNote.SetSerialReader(base.serialReader);  // Asigna el SerialReader al nuevo objeto
+			newDamageNote.Visible = true;  // Asegura que la nota sea visible
+			GD.Print("Nota de daño generada en el carril: " + key);
 		}
 		else
 		{
-			GD.PrintErr("Error: No se pudo cargar la escena de FrozenNote.");
+			GD.PrintErr("Error: No se pudo cargar la escena de DamageNote.");
 		}
 	}
-
-	public override void FreezeLane(int lane)
-	{
-		lanesFrozen[lane] = true;
-		freezeCounters[lane] = 3; // Establece el número de presiones necesarias para descongelar
-		GD.Print($"Carril {lane} congelado.");
-	}
-
-	
 }

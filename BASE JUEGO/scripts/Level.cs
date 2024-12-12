@@ -18,11 +18,7 @@ public partial class Level : Node2D
 	public float songDuration; // Duración de la canción en segundos
 	public string pathVictory;
 	public string pathDefeat;
-	
-	// Nueva lista para llevar el estado de los carriles congelados
-	public List<bool> frozenLanes = new List<bool> { false, false, false, false };
-	public Godot.Collections.Dictionary<int, int> pressCount = new Godot.Collections.Dictionary<int, int>();
-
+	public string pathCancion;
 
 
 	public void _Process()
@@ -32,12 +28,6 @@ public partial class Level : Node2D
 	}
 	public override void _Ready()
 	{
-		// Inicializa el contador de presiones para cada carril
-		for (int i = 0; i < frozenLanes.Count; i++)
-		{
-			pressCount[i] = 0;
-		}
-		
 		InitializeLevel();
 		GD.Print("Estructura del árbol de nodos: ");
 		GetTree().Root.PrintTreePretty();  // verifica la estructura del árbol de nodos para saber si toma los nodos bn
@@ -85,7 +75,7 @@ public partial class Level : Node2D
 		string path = ProjectSettings.GlobalizePath("res://BASE JUEGO/mapeaditos/");
 		//GD.Print("JSON KEYOBJECT");
 		//GD.Print(LoadTextFromFile(path, "tiempos_teclas.json"));
-		string loadedData = LoadTextFromFile(path, "tiempos_teclas.json");
+		string loadedData = LoadTextFromFile(path, pathCancion);
 
 		Json jsonLoader = new Json();
 		Error error = jsonLoader.Parse(loadedData);
@@ -138,58 +128,6 @@ public partial class Level : Node2D
 
 	}
 	//FUNCIONES
-	
-	// Método para congelar un carril
-	public virtual void FreezeLane(int laneIndex)
-	{
-		if (laneIndex >= 0 && laneIndex < frozenLanes.Count && !frozenLanes[laneIndex])
-		{
-			frozenLanes[laneIndex] = true;
-			GD.Print($"Carril {laneIndex} está congelado.");
-			// Puedes agregar efectos visuales o de sonido si lo deseas
-		}
-	}
-
-	// Método para descongelar un carril
-	public void UnfreezeLane(int laneIndex)
-	{
-		if (laneIndex >= 0 && laneIndex < frozenLanes.Count && frozenLanes[laneIndex])
-		{
-			frozenLanes[laneIndex] = false;
-			pressCount[laneIndex] = 0; // Resetea el contador de presiones al descongelarse
-			GD.Print($"Carril {laneIndex} se ha descongelado y ahora está activo.");
-		}
-	}
-
-	// Método llamado cuando se toca una FreezeNote
-	public void HandleFreezeNoteCollision(int laneIndex)
-	{
-		FreezeLane(laneIndex);
-		// Lógica adicional si es necesario, como eliminar la nota de la pantalla
-	}
-
-	// Método llamado cada vez que se presiona una tecla en el carril
-	public void HandleKeyPress(int laneIndex)
-	{
-		if (frozenLanes[laneIndex])
-		{
-			pressCount[laneIndex]++;
-			GD.Print($"Presionada tecla en el carril {laneIndex}. Conteo actual: {pressCount[laneIndex]}");
-
-			if (pressCount[laneIndex] >= 3)
-			{
-				UnfreezeLane(laneIndex);
-			}
-		}
-	}
-
-	// Método de comprobación para saber si un carril está congelado
-	public bool IsLaneFrozen(int laneIndex)
-	{
-		return laneIndex >= 0 && laneIndex < frozenLanes.Count && frozenLanes[laneIndex];
-	}
-
-
 	// Método para girar todos los corazones
 	private void RotateHeart(int heartIndex)
 	{

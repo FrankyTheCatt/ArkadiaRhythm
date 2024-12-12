@@ -9,6 +9,7 @@ public partial class Level1 : Level
 
 	public override void InitializeLevel()
 	{
+		base.pathCancion = "tiempos_teclas.json";
 		// cargar la escena DamageNote para instanciar nuevas notas de daño
 		damageNoteScene = (PackedScene)ResourceLoader.Load("res://Niveles/Nivel1/DamageNote.tscn");
 		if (damageNoteScene == null)

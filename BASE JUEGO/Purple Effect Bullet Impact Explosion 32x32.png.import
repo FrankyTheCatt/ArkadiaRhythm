@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dknwt2d4k6sbe"
-path="res://.godot/imported/circleImage.png-779332fa164d77470f72082ae8c8eb73.ctex"
+uid="uid://dil56dm4xl72a"
+path="res://.godot/imported/Purple Effect Bullet Impact Explosion 32x32.png-3b7c0c19f6a3d3f2d8c3855411472219.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://BASE JUEGO/assets/circleImage.png"
-dest_files=["res://.godot/imported/circleImage.png-779332fa164d77470f72082ae8c8eb73.ctex"]
+source_file="res://BASE JUEGO/Purple Effect Bullet Impact Explosion 32x32.png"
+dest_files=["res://.godot/imported/Purple Effect Bullet Impact Explosion 32x32.png-3b7c0c19f6a3d3f2d8c3855411472219.ctex"]
 
 [params]
 

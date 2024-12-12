@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://BASE JUEGO/mapeaditos/mapeado.gd" id="1_sxodi"]
 [ext_resource type="Texture2D" uid="uid://jkknw3uvm5ye" path="res://BASE JUEGO/mapeaditos/fondos/imanol-delgado-salazar-afterlife-18.jpg" id="2_81jjt"]
-[ext_resource type="AudioStream" uid="uid://chcnyb25qnb1n" path="res://BASE JUEGO/mapeaditos/musica/Numb.mp3" id="3_v3ajx"]
+[ext_resource type="AudioStream" uid="uid://dlj52t206yb7t" path="res://BASE JUEGO/mapeaditos/musica/ILLIT-Tick-Tack.mp3" id="3_28xld"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_sxodi")
@@ -13,5 +13,5 @@ scale = Vector2(0.81875, 0.856553)
 texture = ExtResource("2_81jjt")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_v3ajx")
+stream = ExtResource("3_28xld")
 autoplay = true

@@ -30,6 +30,11 @@ public partial class KeyObject : Area2D
 
 	private bool haQuitadoVida = false;
 
+	    public void DisableInput()
+    {
+        SetProcessInput(false); // Deshabilitar la entrada
+    }
+
 	public override void _Process(double delta)
 	{
 		Position += new Vector2(0, (float)(Gravedad * delta));  // mueve hacia abajo las notas	

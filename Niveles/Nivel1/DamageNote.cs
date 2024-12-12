@@ -83,19 +83,19 @@ public partial class DamageNote : Area2D
 		{
 			case 0:
 				keySelected = Key.A;
-				Modulate = new Color(1, 0, 0);  // rojo (sensor 1)
+				Modulate = new Color(1, 0.5f, 0.5f);  // rojo (sensor 1)
 				break;
 			case 1:
 				keySelected = Key.S;
-				Modulate = new Color(1, 1, 0);  // amarillo (sensor 2)
+				Modulate = new Color(1, 1, 0.5f);  // amarillo (sensor 2)
 				break;
 			case 2:
 				keySelected = Key.D;
-				Modulate = new Color(0, 0, 1);  // azul (sensor 3)
+				Modulate = new Color(0.5f, 0.5f, 1);  // azul (sensor 3)
 				break;
 			case 3:
 				keySelected = Key.F;
-				Modulate = new Color(0, 1, 0);  // verde (sensor 4)
+				Modulate = new Color(0.5f, 1, 0.5f);  // verde (sensor 4)
 				break;
 		}
 	}

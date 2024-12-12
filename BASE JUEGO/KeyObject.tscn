@@ -1,28 +1,27 @@
 [gd_scene load_steps=4 format=3 uid="uid://b8dl02mxq46ir"]
 
 [ext_resource type="Script" path="res://BASE JUEGO/scripts/KeyObject.cs" id="1_lt7pc"]
+[ext_resource type="Texture2D" uid="uid://c3em8ivgdpgan" path="res://BASE JUEGO/assets/Purple Effect Bullet Impact Explosion 32x32.png" id="2_epxns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bpv48"]
 radius = 41.1096
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k2uu6"]
-load_path = "res://.godot/imported/Purple Effect Bullet Impact Explosion 32x32.png-00885d5305310ef53c8853b1c33e1058.ctex"
-
 [node name="KeyObject" type="Area2D"]
 script = ExtResource("1_lt7pc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-shape = SubResource("CircleShape2D_bpv48")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(1, 0)
 scale = Vector2(3.28527, 3.0237)
-texture = SubResource("CompressedTexture2D_k2uu6")
+texture = ExtResource("2_epxns")
 hframes = 20
 vframes = 16
 frame = 316
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0.999999, 0.998312, 0.828563, 1)
+z_index = 1
+shape = SubResource("CircleShape2D_bpv48")
 
 [connection signal="area_entered" from="." to="." method="_OnAreaEntered"]
 [connection signal="area_exited" from="." to="." method="_OnAreaExited"]
