@@ -1,0 +1,117 @@
+[gd_scene load_steps=9 format=3 uid="uid://diuoj1e45whgt"]
+
+[ext_resource type="Script" path="res://MENU/Option_settings.cs" id="1_wv8lw"]
+[ext_resource type="FontFile" uid="uid://b2y7m1xh2l3vd" path="res://MENU/Assets/Minecraft.ttf" id="1_xntbd"]
+[ext_resource type="VideoStream" path="res://MENU/Assets/bc87e5124f8d2cfe810d403adc96ad01.ogv" id="2_1ee3k"]
+[ext_resource type="Script" path="res://MENU/MusicVolumeSlider.cs" id="3_hmqjp"]
+[ext_resource type="AudioStream" uid="uid://dx5jag714kaut" path="res://MENU/Assets/music/DavidKBD - Pink Bloom Pack - 01 - Pink Bloom.ogg" id="5_vmago"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lkf7"]
+bg_color = Color(0.403922, 0.403922, 0.403922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5cf4s"]
+bg_color = Color(0.404511, 0.404511, 0.404511, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6b1n4"]
+bg_color = Color(0.6, 0.6, 0.6, 0.478431)
+
+[node name="Opciones" type="Node2D"]
+script = ExtResource("1_wv8lw")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1155.0
+offset_bottom = 654.0
+stream = ExtResource("2_1ee3k")
+autoplay = true
+expand = true
+loop = true
+
+[node name="ColorRect" type="ColorRect" parent="VideoStreamPlayer"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 654.0
+color = Color(0, 0, 0, 0.607843)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 128.0
+offset_top = 152.0
+offset_right = 341.0
+offset_bottom = 260.0
+scale = Vector2(3, 3)
+
+[node name="Labels" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="FullScreen" type="Label" parent="HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_xntbd")
+text = "FullScreen
+"
+
+[node name="Borderless" type="Label" parent="HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_xntbd")
+text = "Borderless
+"
+
+[node name="Borderless2" type="Label" parent="HBoxContainer/Labels"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_xntbd")
+text = "Music Volume
+"
+
+[node name="Values" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 21
+
+[node name="full screen" type="CheckBox" parent="HBoxContainer/Values"]
+layout_mode = 2
+size_flags_vertical = 3
+expand_icon = true
+
+[node name="borderless" type="CheckBox" parent="HBoxContainer/Values"]
+layout_mode = 2
+
+[node name="music" type="HSlider" parent="HBoxContainer/Values"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+value = 0.7
+script = ExtResource("3_hmqjp")
+
+[node name="Back" type="Button" parent="."]
+offset_left = 1048.0
+offset_top = 16.0
+offset_right = 1123.0
+offset_bottom = 47.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_xntbd")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/hover = SubResource("StyleBoxFlat_5lkf7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5cf4s")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6b1n4")
+text = "Back"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_vmago")
+autoplay = true
+bus = &"Music"
+
+[connection signal="toggled" from="HBoxContainer/Values/full screen" to="." method="_on_full_screen_toggled"]
+[connection signal="toggled" from="HBoxContainer/Values/full screen" to="HBoxContainer" method="_on_full_screen_toggled"]
+[connection signal="toggled" from="HBoxContainer/Values/borderless" to="." method="_on_borderless_toggled"]
+[connection signal="toggled" from="HBoxContainer/Values/borderless" to="HBoxContainer" method="_on_borderless_toggled"]
+[connection signal="value_changed" from="HBoxContainer/Values/music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Values/music" to="HBoxContainer/Values/music" method="_on_value_changed"]
+[connection signal="button_up" from="Back" to="." method="_on_back_button_up"]

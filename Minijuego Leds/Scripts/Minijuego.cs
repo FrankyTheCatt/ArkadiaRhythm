@@ -169,7 +169,7 @@ public partial class Minijuego : Node
 			}
 			GD.Print("Todos los LEDs apagados.");
 			
-			GetTree().ChangeSceneToFile("res://MENU/Victory_leds.tscn");
+			GetTree().ChangeSceneToFile("res://MENU/VictoryScene.tscn");
 		}
 		if (_player.CurrentHealth <= 0)
 		{
@@ -186,7 +186,7 @@ public partial class Minijuego : Node
 		//CAMBIO A ESCENA DE VICTORIA
 		if( _elapsedTime == 70.0)
 		{
-			GetTree().ChangeSceneToFile("res://MENU/Victory_leds.tscn");
+			GetTree().ChangeSceneToFile("res://MENU/VictoryScene.tscn");
 		}
 		
 	}

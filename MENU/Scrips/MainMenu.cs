@@ -13,7 +13,7 @@ public partial class MainMenu : Control
 	}
 	
 	public void _on_options_button_up() {
-		GetTree().ChangeSceneToFile("res://MENU/Opciones_deplegable.tscn");
+		GetTree().ChangeSceneToFile("res://MENU/Opciones.tscn");
 	}
 	
 	public void _on_quit_button_up() { 

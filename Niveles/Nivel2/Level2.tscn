@@ -466,7 +466,7 @@ texture = ExtResource("12_eqrql")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_81y10")
-volume_db = -30.969
+bus = &"Music"
 
 [node name="PlayerLife2" type="Sprite2D" parent="."]
 modulate = Color(0.980095, 0.981243, 1, 1)

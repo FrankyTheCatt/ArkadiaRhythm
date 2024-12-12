@@ -458,7 +458,7 @@ loop = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_vf2gs")
-volume_db = -30.969
+bus = &"Music"
 
 [node name="PlayerLife2" type="Sprite2D" parent="."]
 position = Vector2(797, 603)
