@@ -75,7 +75,7 @@ public partial class Level2 : Level
 		
 		
 		//GLOBALES
-		base.songDuration = 125f;
+		base.songDuration = 125+47;
 		base.pathDefeat = "res://MENU/DefeatScene.tscn";
 		base.pathVictory = "res://Minijuego Leds/Minijuego_Leds.tscn";
 		base.maxBossLife = 5; 
