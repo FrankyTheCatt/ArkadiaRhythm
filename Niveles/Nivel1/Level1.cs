@@ -102,8 +102,6 @@ public partial class Level1 : Level
 	// método que se llama cuando un temporizador se activa
 	private async void SpawnDamageNoteInLane(int key)
 	{
-		await base.ToSignal(base.GetTree().CreateTimer(1.5f), "timeout"); // Espera 2.9 segundos antes de continuar
-
 		Vector2 pos = new Vector2(base.positions[key], 0);  // posición inicial (X) del carril
 
 		if (damageNoteScene != null)
