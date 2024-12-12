@@ -117,6 +117,7 @@ horizontal_alignment = 1
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_03mkf")
 autoplay = true
+bus = &"Music"
 
 [connection signal="pressed" from="VBoxContainer2/Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Nivel1" to="." method="_on_nivel_1_pressed"]
