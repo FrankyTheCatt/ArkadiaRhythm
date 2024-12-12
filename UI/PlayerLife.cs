@@ -54,7 +54,7 @@ public partial class PlayerLife : Node2D // O Node2D dependiendo de tu configura
 		GD.Print("El personaje ha muerto.");
 
 		// Cargar la nueva escena
-		string newScenePath = "res://MENU/menu_inicio.tscn";
+		string newScenePath = "res://MENU/Defeat_leds.tscn";
 		PackedScene newScene = ResourceLoader.Load<PackedScene>(newScenePath);
 
 		if (newScene != null)

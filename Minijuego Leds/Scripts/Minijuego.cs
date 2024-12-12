@@ -169,8 +169,9 @@ public partial class Minijuego : Node
 			}
 			GD.Print("Todos los LEDs apagados.");
 			
+			GetTree().ChangeSceneToFile("res://MENU/Victory_leds.tscn");
 		}
-		if (_player.CurrentHealth == 0)
+		if (_player.CurrentHealth <= 0)
 		{
 			// Apagar todos los LEDs
 			foreach (var led in _ledMapping.Values)
@@ -178,7 +179,8 @@ public partial class Minijuego : Node
 				_arduino.WriteLine($"OFF:{led}");
 			}
 			GD.Print("Todos los LEDs apagados.");
-			GetTree().ChangeSceneToFile("res://MENU/Defeat_leds.tscn");
+			_player.Die();
+			
 		}
 		
 		//CAMBIO A ESCENA DE VICTORIA
