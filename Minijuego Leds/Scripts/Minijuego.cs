@@ -225,7 +225,7 @@ public partial class Minijuego : Node
 	private void QuitarVida()
 	{
 		GD.Print("¡Vida reducida!");
-		_player.TakeDamage(25);
+		_player.TakeDamage(15);
 	}
 	
 	private void ProcessSensorInput(int sensorPressed, LedEvent ledEvent)
