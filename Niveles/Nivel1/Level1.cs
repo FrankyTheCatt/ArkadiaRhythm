@@ -79,7 +79,6 @@ public partial class Level1 : Level
 		base.songDuration = 185+50;
 		base.pathDefeat = "res://MENU/DefeatScene.tscn";
 		base.pathVictory = "res://Minijuego Leds/Minijuego_Leds.tscn";
-		base.maxBossLife = 5; 
 		base.playerHealth=5; // Vida del jugador, puede ser modificada según sea necesario.
 		base.maxLife = 5;// Define el máximo de vida del jugador
 

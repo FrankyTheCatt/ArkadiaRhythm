@@ -14,7 +14,7 @@ public partial class Level : Node2D
 	public int maxLife; 
 	public Timer bossLifeTimer;
 	public int bossLifeIndex = 1;
-	public int maxBossLife; // Número máximo de vidas del boss
+	public int maxBossLife=6; // Número máximo de vidas del boss
 	public float songDuration; // Duración de la canción en segundos
 	public string pathVictory;
 	public string pathDefeat;
